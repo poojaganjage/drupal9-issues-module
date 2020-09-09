@@ -154,7 +154,10 @@ class TermTest extends ResourceTestBase {
         $expected_parent_normalization = [
           'data' => [
             [
-              'id' => Term::load(2)->uuid(),
+              'id' => $this->entity->uuid(),
+              'meta' => [
+                'drupal_internal__' => (int) $this->entity->id(),
+              ],
               'type' => 'taxonomy_term--camelids',
             ],
           ],
@@ -183,7 +186,10 @@ class TermTest extends ResourceTestBase {
               ],
             ],
             [
-              'id' => Term::load(2)->uuid(),
+              'id' => $this->entity->uuid(),
+              'meta' => [
+                'drupal_internal__' => (int) $this->entity->id(),
+              ],
               'type' => 'taxonomy_term--camelids',
             ],
           ],
@@ -198,11 +204,17 @@ class TermTest extends ResourceTestBase {
         $expected_parent_normalization = [
           'data' => [
             [
-              'id' => Term::load(3)->uuid(),
+              'id' => $this->entity->uuid(),
+              'meta' => [
+                'drupal_internal__' => (int) $this->entity->id(),
+              ],
               'type' => 'taxonomy_term--camelids',
             ],
             [
-              'id' => Term::load(2)->uuid(),
+              'id' => $this->entity->uuid(),
+              'meta' => [
+                'drupal_internal__' => (int) $this->entity->id(),
+              ],
               'type' => 'taxonomy_term--camelids',
             ],
           ],
@@ -261,6 +273,9 @@ class TermTest extends ResourceTestBase {
           'vid' => [
             'data' => [
               'id' => Vocabulary::load('camelids')->uuid(),
+              'meta' => [
+                'drupal_internal__' => 'camelids',
+              ],
               'type' => 'taxonomy_vocabulary--taxonomy_vocabulary',
             ],
             'links' => [

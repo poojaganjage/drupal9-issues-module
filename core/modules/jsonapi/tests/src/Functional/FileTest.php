@@ -162,14 +162,17 @@ class FileTest extends ResourceTestBase {
           'drupal_internal__fid' => 1,
         ],
         'relationships' => [
-          'uid' => [
+          'user_id' => [
             'data' => [
               'id' => $this->author->uuid(),
+              'meta' => [
+                'drupal_internal__' => (int) $author->id(),
+              ],
               'type' => 'user--user',
             ],
             'links' => [
-              'related' => ['href' => $self_url . '/uid'],
-              'self' => ['href' => $self_url . '/relationships/uid'],
+              'related' => ['href' => $self_url . '/user_id'],
+              'self' => ['href' => $self_url . '/relationships/user_id'],
             ],
           ],
         ],

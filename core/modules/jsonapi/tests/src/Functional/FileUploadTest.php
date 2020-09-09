@@ -767,14 +767,17 @@ class FileUploadTest extends ResourceTestBase {
           'drupal_internal__fid' => (int) $file->id(),
         ],
         'relationships' => [
-          'uid' => [
+          'user_id' => [
             'data' => [
               'id' => $author->uuid(),
+              'meta' => [
+                'drupal_internal__' => (int) $author->id(),
+              ],
               'type' => 'user--user',
             ],
             'links' => [
-              'related' => ['href' => $self_url . '/uid'],
-              'self' => ['href' => $self_url . '/relationships/uid'],
+              'related' => ['href' => $self_url . '/user_id'],
+              'self' => ['href' => $self_url . '/relationships/user_id'],
             ],
           ],
         ],
