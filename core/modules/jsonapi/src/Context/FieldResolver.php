@@ -664,16 +664,18 @@ class FieldResolver {
    */
   protected static function isCandidateDefinitionProperty($part, array $candidate_definitions) {
     $part = static::getPathPartPropertyName($part);
-      foreach ($property_definitions as $property_name => $property_definition) {
-        $property_name = $property_definition instanceof DataReferenceTargetDefinition
-          ? "drupal_internal__$property_name"
-          : $property_name;
-        if ($part === $property_name) {
-          return TRUE;
-        }
+      foreach ($candidate_definitions as $definition) {
+        $property_definitions = $definition->getPropertyDefinitions();
+          foreach ($property_definitions as $property_name => $property_definition) {
+            $property_name = $property_definition instanceof DataReferenceTargetDefinition
+              ? "drupal_internal__$property_name"
+              : $property_name;
+            if ($part === $property_name) {
+              return TRUE;
+            }
+          }
       }
-    }
-    return FALSE;
+      return FALSE;
   }
 
   /**
