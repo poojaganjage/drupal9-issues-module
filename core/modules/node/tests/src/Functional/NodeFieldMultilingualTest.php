@@ -77,25 +77,25 @@ class NodeFieldMultilingualTest extends BrowserTestBase {
     $body_value = $this->randomMachineName(16);
 
     // Create node to edit.
-    $entity_type = [];
-    $entity_type[$title_key] = $title_value;
-    $entity_type[$body_key] = $body_value;
-    $this->drupalPostForm('node/add/page', $entity_type, t('Save'));
+    $edit = [];
+    $edit[$title_key] = $title_value;
+    $edit[$body_key] = $body_value;
+    $this->drupalPostForm('node/add/page', $edit, t('Save'));
 
     // Check that the node exists in the database.
-    $node = $this->drupalGetNodeByTitle($entity_type[$title_key]);
+    $node = $this->drupalGetNodeByTitle($edit[$title_key]);
     $this->assertNotEmpty($node, 'Node found in database.');
     $this->assertTrue($node->language()->getId() == $langcode && $node->body->value == $body_value, 'Field language correctly set.');
 
     // Change node language.
     $langcode = 'it';
     $this->drupalGet("node/{$node->id()}/edit");
-    $entity_type = [
+    $edit = [
       $title_key => $this->randomMachineName(8),
       'langcode[0][value]' => $langcode,
     ];
-    $this->drupalPostForm(NULL, $entity_type, t('Save'));
-    $node = $this->drupalGetNodeByTitle($entity_type[$title_key], TRUE);
+    $this->drupalPostForm(NULL, $edit, t('Save'));
+    $node = $this->drupalGetNodeByTitle($edit[$title_key], TRUE);
     $this->assertNotEmpty($node, 'Node found in database.');
     $this->assertTrue($node->language()->getId() == $langcode && $node->body->value == $body_value, 'Field language correctly changed.');
 
@@ -121,13 +121,13 @@ class NodeFieldMultilingualTest extends BrowserTestBase {
     $body_value = $this->randomMachineName(16);
 
     // Create node to edit.
-    $entity_type = [];
-    $entity_type[$title_key] = $title_value;
-    $entity_type[$body_key] = $body_value;
-    $this->drupalPostForm('node/add/page', $entity_type, t('Save'));
+    $edit = [];
+    $edit[$title_key] = $title_value;
+    $edit[$body_key] = $body_value;
+    $this->drupalPostForm('node/add/page', $edit, t('Save'));
 
     // Check that the node exists in the database.
-    $node = $this->drupalGetNodeByTitle($entity_type[$title_key]);
+    $node = $this->drupalGetNodeByTitle($edit[$title_key]);
     $this->assertNotEmpty($node, 'Node found in database.');
 
     // Check if node body is showed.
