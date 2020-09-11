@@ -48,12 +48,14 @@ class NodeFieldMultilingualTest extends BrowserTestBase {
     // Add a new language.
     ConfigurableLanguage::createFromLangcode('it')->save();
 
+    // Enable URL language detection and selection.
     $config = $this->config('language.negotiation');
     $config->set('url.prefixes', [
       'en' => 'en',
       'de' => 'de',
     ])->save();
 
+    // Set "Basic page" content type to use multilingual support.
     $entity_type = $this->container->get('entity_type.manager')->getStorage('language_content_settings')->create([
       'target_entity_type_id' => $entity_type,
       'target_bundle' => $bundle,
