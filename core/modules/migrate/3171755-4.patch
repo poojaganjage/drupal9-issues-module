@@ -1,0 +1,13 @@
+diff --git a/core/modules/migrate/tests/src/Unit/RowTest.php b/core/modules/migrate/tests/src/Unit/RowTest.php
+index 4161900..10578c0 100644
+--- a/core/modules/migrate/tests/src/Unit/RowTest.php
++++ b/core/modules/migrate/tests/src/Unit/RowTest.php
+@@ -115,8 +115,6 @@ public function testRowWithInvalidData() {
+     $invalid_values = [
+       'title' => 'node X',
+     ];
+-    $this->expectException(\Exception::class);
+-    $row = new Row($invalid_values, $this->testSourceIds);
+   }
+ 
+   /**
