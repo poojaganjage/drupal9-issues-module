@@ -115,6 +115,8 @@ class RowTest extends UnitTestCase {
     $invalid_values = [
       'title' => 'node X',
     ];
+    $this->expectException(\Exception::class);
+    new Row($invalid_values, $this->testSourceIds);
   }
 
   /**
