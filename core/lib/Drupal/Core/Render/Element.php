@@ -24,7 +24,7 @@ class Element {
    *   TRUE of the key is a property, FALSE otherwise.
    */
   public static function property($key) {
-    return $key[0] == '#';
+    return (0 == strpos($key, '#'));
   }
 
   /**
@@ -50,7 +50,7 @@ class Element {
    *   TRUE if the element is a child, FALSE otherwise.
    */
   public static function child($key) {
-    return !isset($key[0]) || $key[0] != '#';
+    return (!isset($key === '') || (0 != strpos($key, '#')));
   }
 
   /**
@@ -78,7 +78,7 @@ class Element {
     $i = 0;
     $sortable = FALSE;
     foreach ($elements as $key => $value) {
-      if (is_int($key) || $key === '' || $key[0] !== '#') {
+      if (is_int($key) || ($key === '') || (0 !== strpos($key, '#'))) {
         if (is_array($value)) {
           if (isset($value['#weight'])) {
             $weight = $value['#weight'];
