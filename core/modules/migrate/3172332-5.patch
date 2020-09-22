@@ -1,0 +1,12 @@
+diff --git a/core/modules/migrate/tests/src/Unit/process/MigrationLookupTest.php b/core/modules/migrate/tests/src/Unit/process/MigrationLookupTest.php
+index 6ecda30..66ab274 100644
+--- a/core/modules/migrate/tests/src/Unit/process/MigrationLookupTest.php
++++ b/core/modules/migrate/tests/src/Unit/process/MigrationLookupTest.php
+@@ -111,7 +111,6 @@ public function skipInvalidDataProvider() {
+   public function testNoSkipValid($value) {
+     $migration_plugin = $this->prophesize(MigrationInterface::class);
+     $migration_plugin_manager = $this->prophesize(MigrationPluginManagerInterface::class);
+-    $process_plugin_manager = $this->prophesize(MigratePluginManager::class);
+     $id_map = $this->prophesize(MigrateIdMapInterface::class);
+     $id_map->lookupDestinationIds([$value])->willReturn([]);
+     $migration_plugin->getIdMap()->willReturn($id_map->reveal());
