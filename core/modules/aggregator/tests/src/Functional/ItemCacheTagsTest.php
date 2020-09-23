@@ -8,6 +8,7 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Tests\system\Functional\Entity\EntityCacheTagsTestBase;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Tests the Item entity's cache tags.
@@ -15,6 +16,8 @@ use Drupal\user\RoleInterface;
  * @group aggregator
  */
 class ItemCacheTagsTest extends EntityCacheTagsTestBase {
+
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -56,7 +59,7 @@ class ItemCacheTagsTest extends EntityCacheTagsTestBase {
     // Create a "Llama" aggregator feed item.
     $item = Item::create([
       'fid' => $feed->id(),
-      'title' => t('Llama'),
+      'title' => $this->t('Llama'),
       'path' => 'https://www.drupal.org/',
     ]);
     $item->save();
@@ -77,7 +80,7 @@ class ItemCacheTagsTest extends EntityCacheTagsTestBase {
     // Now create a feed item in that feed.
     Item::create([
       'fid' => $this->entity->getFeedId(),
-      'title' => t('Llama 2'),
+      'title' => $this->t('Llama 2'),
       'path' => 'https://groups.drupal.org/',
     ])->save();
 

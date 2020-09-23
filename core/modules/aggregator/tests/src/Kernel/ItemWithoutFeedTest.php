@@ -4,6 +4,7 @@ namespace Drupal\Tests\aggregator\Kernel;
 
 use Drupal\aggregator\Entity\Item;
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Tests clean handling of an item with a missing feed ID.
@@ -11,6 +12,8 @@ use Drupal\KernelTests\KernelTestBase;
  * @group aggregator
  */
 class ItemWithoutFeedTest extends KernelTestBase {
+
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -31,7 +34,7 @@ class ItemWithoutFeedTest extends KernelTestBase {
    */
   public function testEntityCreation() {
     $entity = Item::create([
-      'title' => t('Llama 2'),
+      'title' => $this->t('Llama 2'),
       'path' => 'https://groups.drupal.org/',
     ]);
     $violations = $entity->validate();

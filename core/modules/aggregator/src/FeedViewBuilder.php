@@ -9,6 +9,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityViewBuilder;
 use Drupal\Core\Config\Config;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Theme\Registry;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -17,6 +18,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * View builder handler for aggregator feeds.
  */
 class FeedViewBuilder extends EntityViewBuilder {
+
+  use StringTranslationTrait;
 
   /**
    * The 'aggregator.settings' config.
@@ -142,7 +145,7 @@ class FeedViewBuilder extends EntityViewBuilder {
         $build[$id]['feed_icon'] = [
           '#theme' => 'feed_icon',
           '#url' => $entity->getUrl(),
-          '#title' => t('@title feed', ['@title' => $entity->label()]),
+          '#title' => $this->t('@title feed', ['@title' => $entity->label()]),
         ];
       }
 
@@ -150,7 +153,7 @@ class FeedViewBuilder extends EntityViewBuilder {
         $title_stripped = strip_tags($entity->label());
         $build[$id]['more_link'] = [
           '#type' => 'link',
-          '#title' => t('More<span class="visually-hidden"> posts about @title</span>', [
+          '#title' => $this->t('More<span class="visually-hidden"> posts about @title</span>', [
             '@title' => $title_stripped,
           ]),
           '#url' => Url::fromRoute('entity.aggregator_feed.canonical', ['aggregator_feed' => $entity->id()]),
