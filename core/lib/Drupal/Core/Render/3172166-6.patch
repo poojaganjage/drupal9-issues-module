@@ -1,0 +1,13 @@
+diff --git a/core/lib/Drupal/Core/Render/Element.php b/core/lib/Drupal/Core/Render/Element.php
+index 0a54201..e3441bc 100644
+--- a/core/lib/Drupal/Core/Render/Element.php
++++ b/core/lib/Drupal/Core/Render/Element.php
+@@ -50,7 +50,7 @@ public static function properties(array $element) {
+    *   TRUE if the element is a child, FALSE otherwise.
+    */
+   public static function child($key) {
+-    return (!isset($key === '' || (0 != strpos($key, '#')));
++    return (null === $key || (0 != strpos($key, '#'));
+   }
+ 
+   /**

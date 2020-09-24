@@ -50,7 +50,7 @@ class Element {
    *   TRUE if the element is a child, FALSE otherwise.
    */
   public static function child($key) {
-    return (!isset($key === '' || (0 != strpos($key, '#')));
+    return (null === $key || (0 != strpos($key, '#')));
   }
 
   /**
