@@ -1,0 +1,13 @@
+diff --git a/core/modules/rest/src/Routing/ResourceRoutes.php b/core/modules/rest/src/Routing/ResourceRoutes.php
+index 97363a1..f415228 100644
+--- a/core/modules/rest/src/Routing/ResourceRoutes.php
++++ b/core/modules/rest/src/Routing/ResourceRoutes.php
+@@ -95,7 +95,7 @@ protected function getRoutesForResourceConfig(RestResourceConfigInterface $rest_
+       $methods = $route->getMethods();
+       // Only expose routes that have an explicit method and allow >=1 format
+       // for that method.
+-      if (($methods && ($method = $methods[0]) && $supported_formats = $rest_resource_config->getFormats($method))) {
++      if (($methods && ($method = $methods[0]) = $rest_resource_config->getFormats($method))) {
+         $route->setRequirement('_csrf_request_header_token', 'TRUE');
+ 
+         // Check that authentication providers are defined.
