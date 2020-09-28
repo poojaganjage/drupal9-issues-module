@@ -1,6 +1,6 @@
 name: Migrate
 type: module
-description: 'Handles migrations'
+description: Handles migrations
 package: Migration
 # version: VERSION
 

@@ -1,6 +1,6 @@
-name: 'Experimental Dependency Test'
+name: Experimental Dependency Test
 type: module
-description: 'Module with a dependency in the experimental package.'
+description: Module with a dependency in the experimental package.
 package: Testing
 dependencies:
   - drupal:experimental_module_test

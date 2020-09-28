@@ -1,6 +1,6 @@
-name: 'Book test views'
+name: Book test views
 type: module
-description: 'Provides default views for views book tests.'
+description: Provides default views for views book tests.
 package: Testing
 # version: VERSION
 dependencies:

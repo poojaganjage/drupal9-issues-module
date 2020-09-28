@@ -1,6 +1,6 @@
-name: 'Content moderation test local task'
+name: Content moderation test local task
 type: module
-description: 'Provides a local task for testing.'
+description: Provides a local task for testing.
 package: Testing
 # version: VERSION
 dependencies:

@@ -1,6 +1,6 @@
-name: 'Module required test'
+name: Module required test
 type: module
-description: 'Support module for module system testing.'
+description: Support module for module system testing.
 package: Testing
 # version: VERSION
 # Depends on the Node module to test making a module required using

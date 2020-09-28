@@ -1,6 +1,6 @@
-name: 'Content translation tests'
+name: Content translation tests
 type: module
-description: 'Provides content translation tests.'
+description: Provides content translation tests.
 package: Testing
 # version: VERSION
 dependencies:

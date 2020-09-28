@@ -1,6 +1,6 @@
-name: 'Node module tests'
+name: Node module tests
 type: module
-description: 'Support module for node related testing.'
+description: Support module for node related testing.
 package: Testing
 # version: VERSION
 

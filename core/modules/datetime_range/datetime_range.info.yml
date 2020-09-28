@@ -1,6 +1,6 @@
-name: 'Datetime Range'
+name: Datetime Range
 type: module
-description: 'Provides the ability to store end dates.'
+description: Provides the ability to store end dates.
 package: Field types
 # version: VERSION
 dependencies:

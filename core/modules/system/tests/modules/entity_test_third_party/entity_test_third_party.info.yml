@@ -1,6 +1,6 @@
-name: 'Entity test third-party settings module'
+name: Entity test third-party settings module
 type: module
-description: 'Provides third-party settings for test entity types.'
+description: Provides third-party settings for test entity types.
 package: Testing
 # version: VERSION
 dependencies:

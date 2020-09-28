@@ -1,6 +1,6 @@
-name: 'Views Test Language'
+name: Views Test Language
 type: module
-description: 'Test module for Views.'
+description: Test module for Views.
 package: Testing
 # version: VERSION
 dependencies:

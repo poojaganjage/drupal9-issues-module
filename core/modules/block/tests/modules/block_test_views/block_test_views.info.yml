@@ -1,6 +1,6 @@
-name: 'Block test views'
+name: Block test views
 type: module
-description: 'Provides a view and block to test block displays in views.'
+description: Provides a view and block to test block displays in views.
 package: Testing
 # version: VERSION
 dependencies:

@@ -1,6 +1,6 @@
-name: 'Field UI test'
+name: Field UI test
 type: module
-description: 'Support module for Field UI tests.'
+description: Support module for Field UI tests.
 package: Testing
 # version: VERSION
 

@@ -1,6 +1,6 @@
-name: 'UniqueField Constraint Test'
+name: UniqueField Constraint Test
 type: module
-description: 'Support module for UniqueField Constraint testing.'
+description: Support module for UniqueField Constraint testing.
 package: Testing
 # version: VERSION
 

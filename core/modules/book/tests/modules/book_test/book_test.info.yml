@@ -1,6 +1,6 @@
-name: 'Book module tests'
+name: Book module tests
 type: module
-description: 'Support module for book module testing.'
+description: Support module for book module testing.
 package: Testing
 # version: VERSION
 

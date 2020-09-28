@@ -1,6 +1,6 @@
-name: 'Views Test Modal'
+name: Views Test Modal
 type: module
-description: 'Provides a test page that renders a View in a modal.'
+description: Provides a test page that renders a View in a modal.
 package: Testing
 # version: VERSION
 dependencies:

@@ -1,6 +1,6 @@
-name: 'Migrate module prepareRow tests'
+name: Migrate module prepareRow tests
 type: module
-description: 'Support module for source plugin prepareRow testing.'
+description: Support module for source plugin prepareRow testing.
 package: Testing
 # version: VERSION
 

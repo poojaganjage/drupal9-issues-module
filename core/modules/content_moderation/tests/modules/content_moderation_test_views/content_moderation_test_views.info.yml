@@ -1,6 +1,6 @@
-name: 'Content moderation test views'
+name: Content moderation test views
 type: module
-description: 'Provides default views for views Content moderation tests.'
+description: Provides default views for views Content moderation tests.
 package: Testing
 # version: VERSION
 dependencies:

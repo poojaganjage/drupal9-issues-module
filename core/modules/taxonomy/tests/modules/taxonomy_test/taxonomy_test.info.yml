@@ -1,6 +1,6 @@
-name: 'Taxonomy test'
+name: Taxonomy test
 type: module
-description: 'Provides test hook implementations for taxonomy tests'
+description: Provides test hook implementations for taxonomy tests
 package: Testing
 # version: VERSION
 dependencies:

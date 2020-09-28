@@ -1,7 +1,7 @@
-name: 'Configuration Translation Test Theme'
+name: Configuration Translation Test Theme
 type: theme
 base theme: stable
-description: 'Theme for testing the configuration translation mapper system'
+description: Theme for testing the configuration translation mapper system
 # version: VERSION
 
 # Information added by Drupal.org packaging script on 2020-07-08

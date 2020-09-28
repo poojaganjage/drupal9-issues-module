@@ -1,6 +1,6 @@
-name: 'Workflow Type Test'
+name: Workflow Type Test
 type: module
-description: 'Provides a workflow type plugin for testing.'
+description: Provides a workflow type plugin for testing.
 package: Testing
 # version: VERSION
 dependencies:

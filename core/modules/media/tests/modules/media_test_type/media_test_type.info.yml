@@ -1,6 +1,6 @@
-name: 'Media test type'
+name: Media test type
 type: module
-description: 'Provides test type for a media item.'
+description: Provides test type for a media item.
 package: Testing
 # version: VERSION
 dependencies:

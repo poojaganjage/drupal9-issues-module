@@ -1,4 +1,4 @@
-name: 'Configuration override integration test'
+name: Configuration override integration test
 type: module
 package: Testing
 # version: VERSION

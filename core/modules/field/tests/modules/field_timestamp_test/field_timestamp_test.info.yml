@@ -1,6 +1,6 @@
-name: 'Field Timestamp Test'
+name: Field Timestamp Test
 type: module
-description: 'Support module for the Timestamp field item test.'
+description: Support module for the Timestamp field item test.
 package: Testing
 # version: VERSION
 dependencies:

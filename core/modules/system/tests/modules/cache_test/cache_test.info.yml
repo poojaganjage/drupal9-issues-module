@@ -1,6 +1,6 @@
-name: 'Cache test'
+name: Cache test
 type: module
-description: 'Support module for cache system testing.'
+description: Support module for cache system testing.
 package: Testing
 # version: VERSION
 

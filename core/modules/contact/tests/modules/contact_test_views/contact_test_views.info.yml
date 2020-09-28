@@ -1,6 +1,6 @@
-name: 'Contact test views'
+name: Contact test views
 type: module
-description: 'Provides default views for views contact tests.'
+description: Provides default views for views contact tests.
 package: Testing
 # version: VERSION
 dependencies:

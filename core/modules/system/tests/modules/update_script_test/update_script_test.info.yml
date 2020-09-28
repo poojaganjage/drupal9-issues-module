@@ -1,6 +1,6 @@
-name: 'Update script test'
+name: Update script test
 type: module
-description: 'Support module for update script testing.'
+description: Support module for update script testing.
 package: Testing
 # version: VERSION
 

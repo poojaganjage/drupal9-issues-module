@@ -1,6 +1,6 @@
-name: 'Views Test Formatter'
+name: Views Test Formatter
 type: module
-description: 'Provides test field formatters.'
+description: Provides test field formatters.
 package: Testing
 # version: VERSION
 dependencies:

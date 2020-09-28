@@ -1,6 +1,6 @@
-name: 'Locale test'
+name: Locale test
 type: module
-description: 'Support module for locale module testing.'
+description: Support module for locale module testing.
 package: Testing
 # version: '1.2'
 hidden: true

@@ -1,6 +1,6 @@
-name: 'Migration Stub Test'
+name: Migration Stub Test
 type: module
-description: 'Provides test migrations to test migration  stub service.'
+description: Provides test migrations to test migration  stub service.
 package: Testing
 # version: VERSION
 dependencies:

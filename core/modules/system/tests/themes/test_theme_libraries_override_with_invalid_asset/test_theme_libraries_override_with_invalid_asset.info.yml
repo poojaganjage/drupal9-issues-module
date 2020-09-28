@@ -1,6 +1,6 @@
-name: 'Test theme libraries-override'
+name: Test theme libraries-override
 type: theme
-description: 'Theme with invalid libraries-override asset spec.'
+description: Theme with invalid libraries-override asset spec.
 # version: VERSION
 base theme: classy
 libraries-override:

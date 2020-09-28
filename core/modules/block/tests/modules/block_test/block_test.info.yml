@@ -1,6 +1,6 @@
-name: 'Block test'
+name: Block test
 type: module
-description: 'Provides test blocks.'
+description: Provides test blocks.
 package: Testing
 # version: VERSION
 dependencies:

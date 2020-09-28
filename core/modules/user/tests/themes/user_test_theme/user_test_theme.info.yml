@@ -1,7 +1,7 @@
-name: 'User Test theme'
+name: User Test theme
 type: theme
 base theme: stable
-description: 'Theme for testing the available fields in user twig template'
+description: Theme for testing the available fields in user twig template
 # version: VERSION
 
 # Information added by Drupal.org packaging script on 2020-07-08

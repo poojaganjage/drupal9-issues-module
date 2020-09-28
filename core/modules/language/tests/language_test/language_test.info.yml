@@ -1,6 +1,6 @@
-name: 'Language test'
+name: Language test
 type: module
-description: 'Support module for the language layer tests.'
+description: Support module for the language layer tests.
 package: Testing
 # version: VERSION
 

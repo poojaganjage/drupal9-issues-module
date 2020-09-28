@@ -1,6 +1,6 @@
-name: 'Hook menu tests'
+name: Hook menu tests
 type: module
-description: 'Support module for menu hook testing.'
+description: Support module for menu hook testing.
 package: Testing
 # version: VERSION
 dependencies:

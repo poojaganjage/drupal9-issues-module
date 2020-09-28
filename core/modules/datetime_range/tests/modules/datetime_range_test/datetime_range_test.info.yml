@@ -1,6 +1,6 @@
-name: 'Datetime range test'
+name: Datetime range test
 type: module
-description: 'Provides a testing module for datetime_range.'
+description: Provides a testing module for datetime_range.
 package: Testing
 # version: VERSION
 dependencies:

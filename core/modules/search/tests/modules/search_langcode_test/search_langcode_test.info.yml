@@ -1,6 +1,6 @@
-name: 'Test search entity langcode'
+name: Test search entity langcode
 type: module
-description: 'Support module for search module testing.'
+description: Support module for search module testing.
 package: Testing
 # version: VERSION
 

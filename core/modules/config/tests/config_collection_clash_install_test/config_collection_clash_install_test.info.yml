@@ -1,6 +1,6 @@
 # This should contain a copy of the configuration from the
 # config_collection_install_test module.
-name: 'Config collection clash test module'
+name: Config collection clash test module
 type: module
 package: Testing
 # version: VERSION

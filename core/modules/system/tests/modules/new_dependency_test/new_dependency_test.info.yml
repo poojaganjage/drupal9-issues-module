@@ -1,6 +1,6 @@
-name: 'New Dependency test'
+name: New Dependency test
 type: module
-description: 'Support module for update testing.'
+description: Support module for update testing.
 package: Testing
 # version: VERSION
 dependencies:

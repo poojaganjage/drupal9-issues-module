@@ -1,6 +1,6 @@
-name: 'Taxonomy test views'
+name: Taxonomy test views
 type: module
-description: 'Provides default views for views taxonomy tests.'
+description: Provides default views for views taxonomy tests.
 package: Testing
 # version: VERSION
 dependencies:

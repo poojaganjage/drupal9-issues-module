@@ -1,6 +1,6 @@
-name: 'Syslog test'
+name: Syslog test
 type: module
-description: 'Provides a test logger for syslog module.'
+description: Provides a test logger for syslog module.
 package: Testing
 # version: VERSION
 dependencies:

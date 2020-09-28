@@ -1,6 +1,6 @@
 type: theme
 base theme: stable
-name: 'Test theme with a too long name'
+name: Test theme with a too long name
 # version: VERSION
 
 # Information added by Drupal.org packaging script on 2020-07-08

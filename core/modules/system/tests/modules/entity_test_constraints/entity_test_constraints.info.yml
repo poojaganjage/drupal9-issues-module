@@ -1,6 +1,6 @@
-name: 'Entity constraints test module'
+name: Entity constraints test module
 type: module
-description: 'Tests extending and altering entity constraints.'
+description: Tests extending and altering entity constraints.
 package: Testing
 # version: VERSION
 dependencies:

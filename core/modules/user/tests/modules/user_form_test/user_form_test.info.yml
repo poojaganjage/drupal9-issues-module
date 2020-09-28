@@ -1,6 +1,6 @@
-name: 'User module form tests'
+name: User module form tests
 type: module
-description: 'Support module for user form testing.'
+description: Support module for user form testing.
 package: Testing
 # version: VERSION
 

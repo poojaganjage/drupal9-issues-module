@@ -1,6 +1,6 @@
-name: 'Dialog Renderer Test'
+name: Dialog Renderer Test
 type: module
-description: 'Support module for Dialog Renderer tests.'
+description: Support module for Dialog Renderer tests.
 package: Testing
 # version: VERSION
 

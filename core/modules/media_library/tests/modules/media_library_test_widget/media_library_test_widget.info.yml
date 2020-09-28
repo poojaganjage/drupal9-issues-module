@@ -1,6 +1,6 @@
-name: 'Media Library test widget'
+name: Media Library test widget
 type: module
-description: 'Test widget that has a nested media library widget'
+description: Test widget that has a nested media library widget
 package: Testing
 dependencies:
   - drupal:image

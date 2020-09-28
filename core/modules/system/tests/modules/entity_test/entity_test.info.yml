@@ -1,6 +1,6 @@
-name: 'Entity CRUD test module'
+name: Entity CRUD test module
 type: module
-description: 'Provides entity types based upon the CRUD API.'
+description: Provides entity types based upon the CRUD API.
 package: Testing
 # version: VERSION
 dependencies:

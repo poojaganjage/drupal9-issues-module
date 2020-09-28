@@ -1,6 +1,6 @@
-name: 'Comment test views'
+name: Comment test views
 type: module
-description: 'Provides default views for views comment tests.'
+description: Provides default views for views comment tests.
 package: Testing
 # version: VERSION
 dependencies:

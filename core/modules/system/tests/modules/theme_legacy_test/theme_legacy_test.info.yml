@@ -1,6 +1,6 @@
-name: 'Legacy theme functions test'
+name: Legacy theme functions test
 type: module
-description: 'Support module for testing legacy theme functions.'
+description: Support module for testing legacy theme functions.
 package: Testing
 # version: VERSION
 

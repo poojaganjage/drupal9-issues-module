@@ -1,7 +1,7 @@
-name: '<"Cat" & ''Mouse''>'
+name: <"Cat" & ''Mouse''>
 type: theme
 base theme: stable
-description: 'Theme for testing special characters in block admin.'
+description: Theme for testing special characters in block admin.
 regions:
   content: Content
   help: Help

@@ -1,6 +1,6 @@
-name: 'AJAX form test mock module'
+name: AJAX form test mock module
 type: module
-description: 'Test for AJAX form calls.'
+description: Test for AJAX form calls.
 package: Testing
 # version: VERSION
 

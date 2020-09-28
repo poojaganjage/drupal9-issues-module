@@ -1,6 +1,6 @@
-name: 'Image test'
+name: Image test
 type: module
-description: 'Support module for image toolkit tests.'
+description: Support module for image toolkit tests.
 package: Testing
 # version: VERSION
 

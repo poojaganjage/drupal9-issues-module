@@ -1,4 +1,4 @@
-name: 'Vocabulary serialization test'
+name: Vocabulary serialization test
 type: module
 package: Testing
 # version: VERSION

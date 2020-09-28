@@ -1,7 +1,7 @@
-name: 'Twig registry loader test theme'
+name: Twig registry loader test theme
 type: theme
 base theme: test_theme_twig_registry_loader
-description: 'Support module for Twig registry loader testing.'
+description: Support module for Twig registry loader testing.
 # version: VERSION
 
 # Information added by Drupal.org packaging script on 2020-07-08

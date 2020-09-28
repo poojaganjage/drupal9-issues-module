@@ -1,6 +1,6 @@
-name: 'RDF module namespaces test'
+name: RDF module namespaces test
 type: module
-description: 'Test namespace declaration.'
+description: Test namespace declaration.
 package: Testing
 # version: VERSION
 dependencies:

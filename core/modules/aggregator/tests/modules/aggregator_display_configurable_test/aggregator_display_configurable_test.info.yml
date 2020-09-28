@@ -1,6 +1,6 @@
-name: 'Aggregator configurable display module tests'
+name: Aggregator configurable display module tests
 type: module
-description: 'Support module for aggregator \Drupal\Core\Field\BaseFieldDefinition::setDisplayConfigurable() testing.'
+description: Support module for aggregator \Drupal\Core\Field\BaseFieldDefinition::setDisplayConfigurable() testing.
 package: Testing
 # version: VERSION
 

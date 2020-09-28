@@ -1,6 +1,6 @@
-name: 'Settings Tray Test'
+name: Settings Tray Test
 type: module
-description: 'Provides Settings Tray test functionality.'
+description: Provides Settings Tray test functionality.
 package: Testing
 # version: VERSION
 dependencies:

@@ -1,6 +1,6 @@
-name: 'Node module exception tests'
+name: Node module exception tests
 type: module
-description: 'Support module for node related exception testing.'
+description: Support module for node related exception testing.
 package: Testing
 # version: VERSION
 

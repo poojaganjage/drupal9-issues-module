@@ -1,5 +1,5 @@
 name: Media oEmbed test
-description: 'Provides functionality to mimic an oEmbed provider.'
+description: Provides functionality to mimic an oEmbed provider.
 type: module
 package: Testing
 # version: VERSION

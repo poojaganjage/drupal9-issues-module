@@ -1,6 +1,6 @@
-name: 'Media Library test'
+name: Media Library test
 type: module
-description: 'Test module for Media Library.'
+description: Test module for Media Library.
 package: Testing
 dependencies:
   - drupal:image

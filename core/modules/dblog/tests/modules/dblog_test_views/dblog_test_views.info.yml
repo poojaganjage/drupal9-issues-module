@@ -1,6 +1,6 @@
-name: 'Dblog test views'
+name: Dblog test views
 type: module
-description: 'Provides default views for views dblog tests.'
+description: Provides default views for views dblog tests.
 package: Testing
 # version: VERSION
 dependencies:

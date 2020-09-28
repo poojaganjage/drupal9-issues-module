@@ -1,6 +1,6 @@
-name: 'Twig Loader Test'
+name: Twig Loader Test
 type: module
-description: 'Support module for testing adding Twig loaders.'
+description: Support module for testing adding Twig loaders.
 package: Testing
 # version: VERSION
 

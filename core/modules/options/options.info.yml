@@ -1,6 +1,6 @@
 name: Options
 type: module
-description: 'Defines selection, check box and radio button widgets for text and numeric fields.'
+description: Defines selection, check box and radio button widgets for text and numeric fields.
 package: Field types
 # version: VERSION
 dependencies:

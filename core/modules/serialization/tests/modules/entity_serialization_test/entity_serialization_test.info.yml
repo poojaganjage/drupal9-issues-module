@@ -1,6 +1,6 @@
-name: 'Entity serialization test support'
+name: Entity serialization test support
 type: module
-description: 'Provides test support for entity serialization tests.'
+description: Provides test support for entity serialization tests.
 package: Testing
 # version: VERSION
 

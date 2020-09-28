@@ -1,6 +1,6 @@
-name: 'User access tests'
+name: User access tests
 type: module
-description: 'Support module for user access testing.'
+description: Support module for user access testing.
 package: Testing
 # version: VERSION
 

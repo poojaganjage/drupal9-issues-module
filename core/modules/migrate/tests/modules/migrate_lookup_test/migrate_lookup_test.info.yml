@@ -1,6 +1,6 @@
-name: 'Migration Lookup Test'
+name: Migration Lookup Test
 type: module
-description: 'Provides test migrations to test migration lookup service.'
+description: Provides test migrations to test migration lookup service.
 package: Testing
 # version: VERSION
 dependencies:

@@ -1,6 +1,6 @@
-name: 'File test'
+name: File test
 type: module
-description: 'Provides hooks for testing File module functionality.'
+description: Provides hooks for testing File module functionality.
 package: Testing
 # version: VERSION
 

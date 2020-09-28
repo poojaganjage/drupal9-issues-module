@@ -1,6 +1,6 @@
-name: "ParamConverter test"
+name: ParamConverter test
 type: module
-description: "Support module for paramconverter testing."
+description: Support module for paramconverter testing.
 package: Testing
 # version: VERSION
 

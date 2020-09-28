@@ -1,6 +1,6 @@
-name: 'Experimental dependency test'
+name: Experimental dependency test
 type: theme
-description: 'Experimental dependency test theme.'
+description: Experimental dependency test theme.
 # version: VERSION
 base theme: experimental_theme_test
 

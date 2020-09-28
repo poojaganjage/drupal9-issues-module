@@ -1,6 +1,6 @@
-name: 'Layout Builder Views Test'
+name: Layout Builder Views Test
 type: module
-description: 'Support module for testing.'
+description: Support module for testing.
 package: Testing
 # version: VERSION
 dependencies:

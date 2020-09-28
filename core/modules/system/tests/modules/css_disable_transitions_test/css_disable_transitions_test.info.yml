@@ -1,6 +1,6 @@
-name: 'Test disable CSS animations'
+name: Test disable CSS animations
 type: module
-description: 'Disables CSS animations for tests.'
+description: Disables CSS animations for tests.
 package: Testing
 # version: VERSION
 

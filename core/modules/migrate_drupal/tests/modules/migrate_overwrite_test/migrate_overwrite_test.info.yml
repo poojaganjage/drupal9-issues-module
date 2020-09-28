@@ -1,6 +1,6 @@
-name: 'Migrate property overwrite test'
+name: Migrate property overwrite test
 type: module
-description: 'Example module demonstrating property overwrite support in the Migrate API.'
+description: Example module demonstrating property overwrite support in the Migrate API.
 package: Testing
 # version: VERSION
 

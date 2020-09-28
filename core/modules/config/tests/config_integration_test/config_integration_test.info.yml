@@ -1,6 +1,6 @@
-name: 'ConfigTest integration'
+name: ConfigTest integration
 type: module
-package: 'Testing'
+package: Testing
 # version: VERSION
 dependencies:
   - drupal:config_test

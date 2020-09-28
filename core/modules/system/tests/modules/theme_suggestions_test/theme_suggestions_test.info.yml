@@ -1,6 +1,6 @@
-name: 'Theme suggestions test'
+name: Theme suggestions test
 type: module
-description: 'Support module for testing theme suggestions.'
+description: Support module for testing theme suggestions.
 package: Testing
 # version: VERSION
 

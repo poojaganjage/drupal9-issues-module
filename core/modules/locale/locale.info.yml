@@ -1,6 +1,6 @@
-name: 'Interface Translation'
+name: Interface Translation
 type: module
-description: 'Translates the built-in user interface.'
+description: Translates the built-in user interface.
 configure: locale.translate_page
 package: Multilingual
 # version: VERSION

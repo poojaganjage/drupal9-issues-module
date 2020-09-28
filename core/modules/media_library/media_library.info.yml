@@ -1,6 +1,6 @@
-name: 'Media Library'
+name: Media Library
 type: module
-description: 'Enhances the media list with additional features to more easily find and use existing media items.'
+description: Enhances the media list with additional features to more easily find and use existing media items.
 package: Core
 # version: VERSION
 configure: media_library.settings

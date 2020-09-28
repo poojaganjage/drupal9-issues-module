@@ -1,6 +1,6 @@
-name: 'Action test'
+name: Action test
 type: module
-description: 'Support module for action testing.'
+description: Support module for action testing.
 package: Testing
 # version: VERSION
 

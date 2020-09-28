@@ -1,6 +1,6 @@
-name: 'JS WebAssert test module'
+name: JS WebAssert test module
 type: module
-description: 'Module for the JSWebAssert test.'
+description: Module for the JSWebAssert test.
 package: Testing
 # version: VERSION
 

@@ -1,7 +1,7 @@
-name: 'BigPipe test theme'
+name: BigPipe test theme
 type: theme
 base theme: stable
-description: 'Theme for testing BigPipe edge cases.'
+description: Theme for testing BigPipe edge cases.
 # version: VERSION
 
 # Information added by Drupal.org packaging script on 2020-07-08

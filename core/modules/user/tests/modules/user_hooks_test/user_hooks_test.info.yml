@@ -1,6 +1,6 @@
-name: 'User module hooks tests'
+name: User module hooks tests
 type: module
-description: 'Support module for user hooks testing.'
+description: Support module for user hooks testing.
 package: Testing
 # version: VERSION
 

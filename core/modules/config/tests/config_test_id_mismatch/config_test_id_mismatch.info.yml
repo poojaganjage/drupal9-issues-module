@@ -1,4 +1,4 @@
-name: 'Configuration test ID mismatch'
+name: Configuration test ID mismatch
 type: module
 package: Testing
 # version: VERSION

@@ -1,4 +1,4 @@
-name: 'JSON API test format-agnostic @FieldType normalizers'
+name: JSON API test format-agnostic @FieldType normalizers
 type: module
 package: Testing
 

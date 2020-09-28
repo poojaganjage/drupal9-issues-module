@@ -1,6 +1,6 @@
 name: Quick Edit
 type: module
-description: 'In-place content editing.'
+description: In-place content editing.
 package: Core
 # version: VERSION
 dependencies:

@@ -1,6 +1,6 @@
-name: 'Common Test Cron Helper'
+name: Common Test Cron Helper
 type: module
-description: 'Helper module for CronRunTestCase::testCronExceptions().'
+description: Helper module for CronRunTestCase::testCronExceptions().
 package: Testing
 # version: VERSION
 

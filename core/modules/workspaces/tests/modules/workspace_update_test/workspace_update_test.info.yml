@@ -1,6 +1,6 @@
-name: 'Workspace Update Test'
+name: Workspace Update Test
 type: module
-description: 'Provides supporting code for testing workspaces during database updates.'
+description: Provides supporting code for testing workspaces during database updates.
 package: Testing
 # version: VERSION
 dependencies:

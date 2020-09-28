@@ -1,6 +1,6 @@
-name: 'Contact test storage'
+name: Contact test storage
 type: module
-description: 'Tests that contact messages can be stored.'
+description: Tests that contact messages can be stored.
 package: Testing
 # version: VERSION
 dependencies:

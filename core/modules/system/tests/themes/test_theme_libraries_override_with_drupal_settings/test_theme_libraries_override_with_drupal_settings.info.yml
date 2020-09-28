@@ -1,6 +1,6 @@
-name: 'Test theme libraries-override'
+name: Test theme libraries-override
 type: theme
-description: 'Theme with drupalSettings libraries-override'
+description: Theme with drupalSettings libraries-override
 # version: VERSION
 base theme: classy
 libraries-override:

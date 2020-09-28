@@ -1,6 +1,6 @@
-name: 'Block Content test views'
+name: Block Content test views
 type: module
-description: 'Provides default views for views block_content tests.'
+description: Provides default views for views block_content tests.
 package: Testing
 # version: VERSION
 dependencies:

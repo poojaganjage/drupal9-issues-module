@@ -1,6 +1,6 @@
-name: 'RDF test module'
+name: RDF test module
 type: module
-description: 'Test functionality for the RDF module.'
+description: Test functionality for the RDF module.
 package: Testing
 # version: VERSION
 dependencies:

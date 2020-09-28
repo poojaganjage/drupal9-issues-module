@@ -1,6 +1,6 @@
-name: 'Test theme libraries-extend'
+name: Test theme libraries-extend
 type: theme
-description: 'Test Theme with libraries-extend'
+description: Test Theme with libraries-extend
 # version: VERSION
 base theme: classy
 libraries-extend:

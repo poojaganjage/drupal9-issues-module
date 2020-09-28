@@ -1,6 +1,6 @@
-name: 'Layout Builder overrides test'
+name: Layout Builder overrides test
 type: module
-description: 'Support module for testing overriding layout building.'
+description: Support module for testing overriding layout building.
 package: Testing
 # version: VERSION
 

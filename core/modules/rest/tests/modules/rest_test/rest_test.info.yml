@@ -1,6 +1,6 @@
-name: 'REST test'
+name: REST test
 type: module
-description: 'Provides test hooks and resources for REST module.'
+description: Provides test hooks and resources for REST module.
 package: Testing
 # version: VERSION
 

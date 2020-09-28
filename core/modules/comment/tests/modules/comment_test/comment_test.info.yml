@@ -1,6 +1,6 @@
-name: 'Comment test'
+name: Comment test
 type: module
-description: 'Support module for Comment module testing.'
+description: Support module for Comment module testing.
 package: Testing
 # version: VERSION
 dependencies:

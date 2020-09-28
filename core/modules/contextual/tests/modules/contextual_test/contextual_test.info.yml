@@ -1,6 +1,6 @@
-name: 'Contextual Test'
+name: Contextual Test
 type: module
-description: 'Provides test contextual links.'
+description: Provides test contextual links.
 package: Testing
 # version: VERSION
 dependencies:

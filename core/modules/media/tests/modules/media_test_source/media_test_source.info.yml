@@ -1,6 +1,6 @@
-name: 'Test media source'
+name: Test media source
 type: module
-description: 'Provides test media source to test configuration forms.'
+description: Provides test media source to test configuration forms.
 package: Testing
 # version: VERSION
 

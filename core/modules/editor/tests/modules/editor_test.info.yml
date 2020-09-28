@@ -1,6 +1,6 @@
-name: 'Text Editor test'
+name: Text Editor test
 type: module
-description: 'Support module for the Text Editor module tests.'
+description: Support module for the Text Editor module tests.
 package: Testing
 # version: VERSION
 

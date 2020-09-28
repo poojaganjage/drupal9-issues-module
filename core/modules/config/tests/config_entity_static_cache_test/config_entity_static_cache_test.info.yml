@@ -1,4 +1,4 @@
-name: 'Configuration entity static cache test'
+name: Configuration entity static cache test
 type: module
 package: Testing
 # version: VERSION

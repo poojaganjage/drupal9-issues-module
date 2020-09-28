@@ -1,6 +1,6 @@
-name: 'Image test views'
+name: Image test views
 type: module
-description: 'Provides default views for views image tests.'
+description: Provides default views for views image tests.
 package: Testing
 # version: VERSION
 dependencies:

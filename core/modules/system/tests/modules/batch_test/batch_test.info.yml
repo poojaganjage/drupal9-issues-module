@@ -1,6 +1,6 @@
-name: 'Batch API test'
+name: Batch API test
 type: module
-description: 'Support module for Batch API tests.'
+description: Support module for Batch API tests.
 package: Testing
 # version: VERSION
 

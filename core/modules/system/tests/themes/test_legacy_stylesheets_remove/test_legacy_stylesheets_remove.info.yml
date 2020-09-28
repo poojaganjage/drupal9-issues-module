@@ -1,6 +1,6 @@
-name: 'Theme Legacy Test Stylesheets Remove'
+name: Theme Legacy Test Stylesheets Remove
 type: theme
-description: 'Test theme using legacy stylesheets-remove.'
+description: Test theme using legacy stylesheets-remove.
 # version: VERSION
 base theme: classy
 package: Testing

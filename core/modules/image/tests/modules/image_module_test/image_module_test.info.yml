@@ -1,6 +1,6 @@
-name: 'Image test'
+name: Image test
 type: module
-description: 'Provides hook implementations for testing Image module functionality.'
+description: Provides hook implementations for testing Image module functionality.
 package: Testing
 # version: VERSION
 
