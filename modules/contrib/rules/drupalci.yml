@@ -1,0 +1,18 @@
+build:
+  assessment:
+    validate_codebase:
+      host_command:
+      container_command:
+      phplint:
+      container_composer:
+      csslint:
+      eslint:
+      phpcs:
+        sniff-all-files: true
+      # Static analysis for uses of @deprecated code.
+      phpstan:
+        halt-on-fail: false
+    testing:
+      run_tests.standard:
+        types: 'Simpletest,PHPUnit-Unit,PHPUnit-Kernel,PHPUnit-Functional'
+        suppress-deprecations: false
