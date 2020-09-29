@@ -1,0 +1,1116 @@
+diff --git a/drupalci.yml b/drupalci.yml
+index e69de29b..4756acc2 100644
+--- a/drupalci.yml
++++ b/drupalci.yml
+@@ -0,0 +1,18 @@
++build:
++  assessment:
++    validate_codebase:
++      host_command:
++      container_command:
++      phplint:
++      container_composer:
++      csslint:
++      eslint:
++      phpcs:
++        sniff-all-files: true
++      # Static analysis for uses of @deprecated code.
++      phpstan:
++        halt-on-fail: false
++    testing:
++      run_tests.standard:
++        types: 'Simpletest,PHPUnit-Unit,PHPUnit-Kernel,PHPUnit-Functional'
++        suppress-deprecations: false
+\ No newline at end of file
+diff --git a/tests/src/Functional/ActionsFormTest.php b/tests/src/Functional/ActionsFormTest.php
+index c3a6a6d0..f0536e92 100644
+--- a/tests/src/Functional/ActionsFormTest.php
++++ b/tests/src/Functional/ActionsFormTest.php
+@@ -37,7 +37,7 @@ class ActionsFormTest extends RulesBrowserTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     // Create an article content type that we will use for testing.
+diff --git a/tests/src/Functional/ConditionsFormTest.php b/tests/src/Functional/ConditionsFormTest.php
+index 88d024c0..1fee608a 100644
+--- a/tests/src/Functional/ConditionsFormTest.php
++++ b/tests/src/Functional/ConditionsFormTest.php
+@@ -37,7 +37,7 @@ class ConditionsFormTest extends RulesBrowserTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     // Create an article content type that we will use for testing.
+diff --git a/tests/src/Functional/ConfigureAndExecuteTest.php b/tests/src/Functional/ConfigureAndExecuteTest.php
+index 6978b9ba..7ad18661 100644
+--- a/tests/src/Functional/ConfigureAndExecuteTest.php
++++ b/tests/src/Functional/ConfigureAndExecuteTest.php
+@@ -35,7 +35,7 @@ class ConfigureAndExecuteTest extends RulesBrowserTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     // Create an article content type that we will use for testing.
+diff --git a/tests/src/Functional/RulesDebugLogTest.php b/tests/src/Functional/RulesDebugLogTest.php
+index e6168ea0..76208471 100644
+--- a/tests/src/Functional/RulesDebugLogTest.php
++++ b/tests/src/Functional/RulesDebugLogTest.php
+@@ -26,7 +26,7 @@ class RulesDebugLogTest extends RulesBrowserTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     // Testing profile doesn't include a 'page' content type.
+diff --git a/tests/src/FunctionalJavascript/EventBundleTest.php b/tests/src/FunctionalJavascript/EventBundleTest.php
+index 0228240c..15c9ccdb 100644
+--- a/tests/src/FunctionalJavascript/EventBundleTest.php
++++ b/tests/src/FunctionalJavascript/EventBundleTest.php
+@@ -26,7 +26,7 @@ class EventBundleTest extends WebDriverTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     // Testing profile doesn't include a 'page' or 'article' content type.
+diff --git a/tests/src/Kernel/ConfigEntityDefaultsTest.php b/tests/src/Kernel/ConfigEntityDefaultsTest.php
+index 327e844d..dc733d2f 100644
+--- a/tests/src/Kernel/ConfigEntityDefaultsTest.php
++++ b/tests/src/Kernel/ConfigEntityDefaultsTest.php
+@@ -46,7 +46,7 @@ class ConfigEntityDefaultsTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->entityTypeManager = $this->container->get('entity_type.manager');
+     $this->storage = $this->entityTypeManager->getStorage('rules_component');
+diff --git a/tests/src/Kernel/ConfigEntityTest.php b/tests/src/Kernel/ConfigEntityTest.php
+index bf9f9f69..507215c8 100644
+--- a/tests/src/Kernel/ConfigEntityTest.php
++++ b/tests/src/Kernel/ConfigEntityTest.php
+@@ -23,7 +23,7 @@ class ConfigEntityTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->storage = $this->container->get('entity_type.manager')->getStorage('rules_component');
+diff --git a/tests/src/Kernel/ConfigSchemaTest.php b/tests/src/Kernel/ConfigSchemaTest.php
+index 163e712b..24f9217e 100644
+--- a/tests/src/Kernel/ConfigSchemaTest.php
++++ b/tests/src/Kernel/ConfigSchemaTest.php
+@@ -21,7 +21,7 @@ class ConfigSchemaTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->storage = $this->container->get('entity_type.manager')->getStorage('rules_component');
+diff --git a/tests/src/Kernel/ConfigurableEventHandlerTest.php b/tests/src/Kernel/ConfigurableEventHandlerTest.php
+index c1672b15..6cf3609c 100644
+--- a/tests/src/Kernel/ConfigurableEventHandlerTest.php
++++ b/tests/src/Kernel/ConfigurableEventHandlerTest.php
+@@ -37,7 +37,7 @@ class ConfigurableEventHandlerTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->installSchema('system', ['sequences']);
+diff --git a/tests/src/Kernel/ContextProvider/CurrentDateContextTest.php b/tests/src/Kernel/ContextProvider/CurrentDateContextTest.php
+index 82e6462a..be7c3ff9 100644
+--- a/tests/src/Kernel/ContextProvider/CurrentDateContextTest.php
++++ b/tests/src/Kernel/ContextProvider/CurrentDateContextTest.php
+@@ -26,7 +26,7 @@ class CurrentDateContextTest extends KernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->installSchema('system', ['sequences']);
+diff --git a/tests/src/Kernel/ContextProvider/CurrentPathContextTest.php b/tests/src/Kernel/ContextProvider/CurrentPathContextTest.php
+index b292ad99..424b89c4 100644
+--- a/tests/src/Kernel/ContextProvider/CurrentPathContextTest.php
++++ b/tests/src/Kernel/ContextProvider/CurrentPathContextTest.php
+@@ -26,7 +26,7 @@ class CurrentPathContextTest extends KernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->installSchema('system', ['sequences']);
+diff --git a/tests/src/Kernel/ContextProvider/SiteContextTest.php b/tests/src/Kernel/ContextProvider/SiteContextTest.php
+index 76cf603d..75f85866 100644
+--- a/tests/src/Kernel/ContextProvider/SiteContextTest.php
++++ b/tests/src/Kernel/ContextProvider/SiteContextTest.php
+@@ -26,7 +26,7 @@ class SiteContextTest extends KernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->installSchema('system', ['sequences']);
+diff --git a/tests/src/Kernel/CoreIntegrationTest.php b/tests/src/Kernel/CoreIntegrationTest.php
+index f4a45388..8afca1a2 100644
+--- a/tests/src/Kernel/CoreIntegrationTest.php
++++ b/tests/src/Kernel/CoreIntegrationTest.php
+@@ -27,7 +27,7 @@ class CoreIntegrationTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->installSchema('system', ['sequences']);
+diff --git a/tests/src/Kernel/Engine/AutocompleteTest.php b/tests/src/Kernel/Engine/AutocompleteTest.php
+index af7b5860..024b2800 100644
+--- a/tests/src/Kernel/Engine/AutocompleteTest.php
++++ b/tests/src/Kernel/Engine/AutocompleteTest.php
+@@ -24,7 +24,7 @@ class AutocompleteTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->installEntitySchema('user');
+diff --git a/tests/src/Kernel/Engine/MetadataAssertionTest.php b/tests/src/Kernel/Engine/MetadataAssertionTest.php
+index 3851fa71..256212b3 100644
+--- a/tests/src/Kernel/Engine/MetadataAssertionTest.php
++++ b/tests/src/Kernel/Engine/MetadataAssertionTest.php
+@@ -31,7 +31,7 @@ class MetadataAssertionTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->installSchema('system', ['sequences']);
+diff --git a/tests/src/Kernel/EntityViewTest.php b/tests/src/Kernel/EntityViewTest.php
+index 6841d8a6..f1d46fd7 100644
+--- a/tests/src/Kernel/EntityViewTest.php
++++ b/tests/src/Kernel/EntityViewTest.php
+@@ -19,7 +19,7 @@ class EntityViewTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->installEntitySchema('user');
+diff --git a/tests/src/Kernel/EventIntegrationTest.php b/tests/src/Kernel/EventIntegrationTest.php
+index 5e060c46..7d62eb64 100644
+--- a/tests/src/Kernel/EventIntegrationTest.php
++++ b/tests/src/Kernel/EventIntegrationTest.php
+@@ -30,7 +30,7 @@ class EventIntegrationTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->storage = $this->container->get('entity_type.manager')->getStorage('rules_reaction_rule');
+ 
+diff --git a/tests/src/Kernel/RulesEmailTest.php b/tests/src/Kernel/RulesEmailTest.php
+index be6bb073..2df024fc 100644
+--- a/tests/src/Kernel/RulesEmailTest.php
++++ b/tests/src/Kernel/RulesEmailTest.php
+@@ -26,7 +26,7 @@ class RulesEmailTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     // Use the state system collector email backend.
+     $this->container->get('config.factory')->getEditable('system.mail')
+diff --git a/tests/src/Kernel/RulesEngineTest.php b/tests/src/Kernel/RulesEngineTest.php
+index dd6627d9..18628e4e 100644
+--- a/tests/src/Kernel/RulesEngineTest.php
++++ b/tests/src/Kernel/RulesEngineTest.php
+@@ -18,7 +18,7 @@ class RulesEngineTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->installEntitySchema('user');
+ 
+diff --git a/tests/src/Kernel/RulesKernelTestBase.php b/tests/src/Kernel/RulesKernelTestBase.php
+index a6312a57..6add2132 100644
+--- a/tests/src/Kernel/RulesKernelTestBase.php
++++ b/tests/src/Kernel/RulesKernelTestBase.php
+@@ -74,7 +74,7 @@ abstract class RulesKernelTestBase extends KernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->logger = $this->container->get('logger.channel.rules_debug');
+diff --git a/tests/src/Kernel/RulesUiEmbedTest.php b/tests/src/Kernel/RulesUiEmbedTest.php
+index f248aab7..92244a38 100644
+--- a/tests/src/Kernel/RulesUiEmbedTest.php
++++ b/tests/src/Kernel/RulesUiEmbedTest.php
+@@ -29,7 +29,7 @@ class RulesUiEmbedTest extends RulesKernelTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->rulesUiManager = $this->container->get('plugin.manager.rules_ui');
+diff --git a/tests/src/Unit/ActionSetExpressionTest.php b/tests/src/Unit/ActionSetExpressionTest.php
+index cccd934c..3e31ae53 100644
+--- a/tests/src/Unit/ActionSetExpressionTest.php
++++ b/tests/src/Unit/ActionSetExpressionTest.php
+@@ -24,7 +24,7 @@ class ActionSetExpressionTest extends RulesUnitTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     // TestActionSetExpression is defined below.
+diff --git a/tests/src/Unit/AndExpressionTest.php b/tests/src/Unit/AndExpressionTest.php
+index 11918b8d..53817153 100644
+--- a/tests/src/Unit/AndExpressionTest.php
++++ b/tests/src/Unit/AndExpressionTest.php
+@@ -23,7 +23,7 @@ class AndExpressionTest extends RulesUnitTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->and = new AndExpression([], '', ['label' => 'Condition set (AND)'], $this->expressionManager->reveal(), $this->rulesDebugLogger->reveal());
+diff --git a/tests/src/Unit/ConditionExpressionTest.php b/tests/src/Unit/ConditionExpressionTest.php
+index 7fa70eab..4f80644f 100644
+--- a/tests/src/Unit/ConditionExpressionTest.php
++++ b/tests/src/Unit/ConditionExpressionTest.php
+@@ -58,7 +58,7 @@ class ConditionExpressionTest extends UnitTestCase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     // Create a test condition plugin that always evaluates to TRUE.
+diff --git a/tests/src/Unit/Integration/Condition/DataComparisonTest.php b/tests/src/Unit/Integration/Condition/DataComparisonTest.php
+index 4278e738..a2934447 100644
+--- a/tests/src/Unit/Integration/Condition/DataComparisonTest.php
++++ b/tests/src/Unit/Integration/Condition/DataComparisonTest.php
+@@ -21,7 +21,7 @@ class DataComparisonTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->condition = $this->conditionManager->createInstance('rules_data_comparison');
+diff --git a/tests/src/Unit/Integration/Condition/DataIsEmptyTest.php b/tests/src/Unit/Integration/Condition/DataIsEmptyTest.php
+index fcfe6098..db8a1d91 100644
+--- a/tests/src/Unit/Integration/Condition/DataIsEmptyTest.php
++++ b/tests/src/Unit/Integration/Condition/DataIsEmptyTest.php
+@@ -22,7 +22,7 @@ class DataIsEmptyTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->condition = $this->conditionManager->createInstance('rules_data_is_empty');
+diff --git a/tests/src/Unit/Integration/Condition/EntityHasFieldTest.php b/tests/src/Unit/Integration/Condition/EntityHasFieldTest.php
+index c363de55..d4c9f93f 100644
+--- a/tests/src/Unit/Integration/Condition/EntityHasFieldTest.php
++++ b/tests/src/Unit/Integration/Condition/EntityHasFieldTest.php
+@@ -21,7 +21,7 @@ class EntityHasFieldTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->condition = $this->conditionManager->createInstance('rules_entity_has_field');
+diff --git a/tests/src/Unit/Integration/Condition/EntityIsNewTest.php b/tests/src/Unit/Integration/Condition/EntityIsNewTest.php
+index ecc893de..8a4dda3d 100644
+--- a/tests/src/Unit/Integration/Condition/EntityIsNewTest.php
++++ b/tests/src/Unit/Integration/Condition/EntityIsNewTest.php
+@@ -21,7 +21,7 @@ class EntityIsNewTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->condition = $this->conditionManager->createInstance('rules_entity_is_new');
+   }
+diff --git a/tests/src/Unit/Integration/Condition/EntityIsOfBundleTest.php b/tests/src/Unit/Integration/Condition/EntityIsOfBundleTest.php
+index 9c3dc634..04eeea73 100644
+--- a/tests/src/Unit/Integration/Condition/EntityIsOfBundleTest.php
++++ b/tests/src/Unit/Integration/Condition/EntityIsOfBundleTest.php
+@@ -21,7 +21,7 @@ class EntityIsOfBundleTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->condition = $this->conditionManager->createInstance('rules_entity_is_of_bundle');
+diff --git a/tests/src/Unit/Integration/Condition/EntityIsOfTypeTest.php b/tests/src/Unit/Integration/Condition/EntityIsOfTypeTest.php
+index e968d51a..aed8446b 100644
+--- a/tests/src/Unit/Integration/Condition/EntityIsOfTypeTest.php
++++ b/tests/src/Unit/Integration/Condition/EntityIsOfTypeTest.php
+@@ -21,7 +21,7 @@ class EntityIsOfTypeTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->condition = $this->conditionManager->createInstance('rules_entity_is_of_type');
+diff --git a/tests/src/Unit/Integration/Condition/IpIsBannedTest.php b/tests/src/Unit/Integration/Condition/IpIsBannedTest.php
+index d875ebe6..85728a75 100644
+--- a/tests/src/Unit/Integration/Condition/IpIsBannedTest.php
++++ b/tests/src/Unit/Integration/Condition/IpIsBannedTest.php
+@@ -41,7 +41,7 @@ class IpIsBannedTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     // Must enable the ban module.
+     $this->enableModule('ban');
+diff --git a/tests/src/Unit/Integration/Condition/ListContainsTest.php b/tests/src/Unit/Integration/Condition/ListContainsTest.php
+index 23485d27..766d3bf4 100644
+--- a/tests/src/Unit/Integration/Condition/ListContainsTest.php
++++ b/tests/src/Unit/Integration/Condition/ListContainsTest.php
+@@ -21,7 +21,7 @@ class ListContainsTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->condition = $this->conditionManager->createInstance('rules_list_contains');
+diff --git a/tests/src/Unit/Integration/Condition/ListCountIsTest.php b/tests/src/Unit/Integration/Condition/ListCountIsTest.php
+index 39061e8b..8b625348 100644
+--- a/tests/src/Unit/Integration/Condition/ListCountIsTest.php
++++ b/tests/src/Unit/Integration/Condition/ListCountIsTest.php
+@@ -20,7 +20,7 @@ class ListCountIsTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->condition = $this->conditionManager->createInstance('rules_list_count_is');
+diff --git a/tests/src/Unit/Integration/Condition/NodeIsOfTypeTest.php b/tests/src/Unit/Integration/Condition/NodeIsOfTypeTest.php
+index 151978c5..97650e3a 100644
+--- a/tests/src/Unit/Integration/Condition/NodeIsOfTypeTest.php
++++ b/tests/src/Unit/Integration/Condition/NodeIsOfTypeTest.php
+@@ -21,7 +21,7 @@ class NodeIsOfTypeTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->enableModule('node');
+diff --git a/tests/src/Unit/Integration/Condition/NodeIsPromotedTest.php b/tests/src/Unit/Integration/Condition/NodeIsPromotedTest.php
+index 9be8686b..8e9737c6 100644
+--- a/tests/src/Unit/Integration/Condition/NodeIsPromotedTest.php
++++ b/tests/src/Unit/Integration/Condition/NodeIsPromotedTest.php
+@@ -21,7 +21,7 @@ class NodeIsPromotedTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->enableModule('node');
+diff --git a/tests/src/Unit/Integration/Condition/NodeIsPublishedTest.php b/tests/src/Unit/Integration/Condition/NodeIsPublishedTest.php
+index 05f40047..88d653bf 100644
+--- a/tests/src/Unit/Integration/Condition/NodeIsPublishedTest.php
++++ b/tests/src/Unit/Integration/Condition/NodeIsPublishedTest.php
+@@ -21,7 +21,7 @@ class NodeIsPublishedTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->enableModule('node');
+diff --git a/tests/src/Unit/Integration/Condition/NodeIsStickyTest.php b/tests/src/Unit/Integration/Condition/NodeIsStickyTest.php
+index c3ba6dba..98574232 100644
+--- a/tests/src/Unit/Integration/Condition/NodeIsStickyTest.php
++++ b/tests/src/Unit/Integration/Condition/NodeIsStickyTest.php
+@@ -21,7 +21,7 @@ class NodeIsStickyTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->enableModule('node');
+diff --git a/tests/src/Unit/Integration/Condition/PathAliasExistsTest.php b/tests/src/Unit/Integration/Condition/PathAliasExistsTest.php
+index 8d65feb6..3d4de5c9 100644
+--- a/tests/src/Unit/Integration/Condition/PathAliasExistsTest.php
++++ b/tests/src/Unit/Integration/Condition/PathAliasExistsTest.php
+@@ -34,7 +34,7 @@ class PathAliasExistsTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     // Must enable the path_alias module.
+     $this->enableModule('path_alias');
+diff --git a/tests/src/Unit/Integration/Condition/PathHasAliasTest.php b/tests/src/Unit/Integration/Condition/PathHasAliasTest.php
+index 02295619..8d5a8a84 100644
+--- a/tests/src/Unit/Integration/Condition/PathHasAliasTest.php
++++ b/tests/src/Unit/Integration/Condition/PathHasAliasTest.php
+@@ -34,7 +34,7 @@ class PathHasAliasTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     // Must enable the path_alias module.
+     $this->enableModule('path_alias');
+diff --git a/tests/src/Unit/Integration/Condition/TextComparisonTest.php b/tests/src/Unit/Integration/Condition/TextComparisonTest.php
+index 2f6dcc2a..21c483dc 100644
+--- a/tests/src/Unit/Integration/Condition/TextComparisonTest.php
++++ b/tests/src/Unit/Integration/Condition/TextComparisonTest.php
+@@ -20,7 +20,7 @@ class TextComparisonTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->condition = $this->conditionManager->createInstance('rules_text_comparison');
+diff --git a/tests/src/Unit/Integration/Condition/UserHasEntityFieldAccessTest.php b/tests/src/Unit/Integration/Condition/UserHasEntityFieldAccessTest.php
+index 9e508920..44b2110e 100644
+--- a/tests/src/Unit/Integration/Condition/UserHasEntityFieldAccessTest.php
++++ b/tests/src/Unit/Integration/Condition/UserHasEntityFieldAccessTest.php
+@@ -24,7 +24,7 @@ class UserHasEntityFieldAccessTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->enableModule('user');
+diff --git a/tests/src/Unit/Integration/Condition/UserHasRoleTest.php b/tests/src/Unit/Integration/Condition/UserHasRoleTest.php
+index d5a96286..c61a6931 100644
+--- a/tests/src/Unit/Integration/Condition/UserHasRoleTest.php
++++ b/tests/src/Unit/Integration/Condition/UserHasRoleTest.php
+@@ -23,7 +23,7 @@ class UserHasRoleTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->enableModule('user');
+diff --git a/tests/src/Unit/Integration/Condition/UserIsBlockedTest.php b/tests/src/Unit/Integration/Condition/UserIsBlockedTest.php
+index 2a95870e..d391df1e 100644
+--- a/tests/src/Unit/Integration/Condition/UserIsBlockedTest.php
++++ b/tests/src/Unit/Integration/Condition/UserIsBlockedTest.php
+@@ -21,7 +21,7 @@ class UserIsBlockedTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->enableModule('user');
+diff --git a/tests/src/Unit/Integration/ContributedPluginDiscoveryTest.php b/tests/src/Unit/Integration/ContributedPluginDiscoveryTest.php
+index e5f0c3e4..451b5696 100644
+--- a/tests/src/Unit/Integration/ContributedPluginDiscoveryTest.php
++++ b/tests/src/Unit/Integration/ContributedPluginDiscoveryTest.php
+@@ -23,7 +23,7 @@ class ContributedPluginDiscoveryTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->enableModule('rules_test');
+diff --git a/tests/src/Unit/Integration/Engine/AnnotationProcessingTest.php b/tests/src/Unit/Integration/Engine/AnnotationProcessingTest.php
+index 2fd3739e..e102c12a 100644
+--- a/tests/src/Unit/Integration/Engine/AnnotationProcessingTest.php
++++ b/tests/src/Unit/Integration/Engine/AnnotationProcessingTest.php
+@@ -16,7 +16,7 @@ class AnnotationProcessingTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->enableModule('user');
+     // Some of our plugins assume sessions exist:
+diff --git a/tests/src/Unit/Integration/Engine/LoopTest.php b/tests/src/Unit/Integration/Engine/LoopTest.php
+index 52b2f32c..965ee221 100644
+--- a/tests/src/Unit/Integration/Engine/LoopTest.php
++++ b/tests/src/Unit/Integration/Engine/LoopTest.php
+@@ -21,7 +21,7 @@ class LoopTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->enableModule('node');
+   }
+diff --git a/tests/src/Unit/Integration/Event/EventTestBase.php b/tests/src/Unit/Integration/Event/EventTestBase.php
+index 2f80f847..2750195a 100644
+--- a/tests/src/Unit/Integration/Event/EventTestBase.php
++++ b/tests/src/Unit/Integration/Event/EventTestBase.php
+@@ -22,7 +22,7 @@ abstract class EventTestBase extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->moduleHandler->getModuleDirectories()
+       ->willReturn(['rules' => __DIR__ . '/../../../../../']);
+diff --git a/tests/src/Unit/Integration/RulesAction/BanIpTest.php b/tests/src/Unit/Integration/RulesAction/BanIpTest.php
+index b0be39de..0d7a1a62 100644
+--- a/tests/src/Unit/Integration/RulesAction/BanIpTest.php
++++ b/tests/src/Unit/Integration/RulesAction/BanIpTest.php
+@@ -45,7 +45,7 @@ class BanIpTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     // Must enable the ban module.
+     $this->enableModule('ban');
+diff --git a/tests/src/Unit/Integration/RulesAction/DataCalculateValueTest.php b/tests/src/Unit/Integration/RulesAction/DataCalculateValueTest.php
+index 80eee6a3..31545994 100644
+--- a/tests/src/Unit/Integration/RulesAction/DataCalculateValueTest.php
++++ b/tests/src/Unit/Integration/RulesAction/DataCalculateValueTest.php
+@@ -20,7 +20,7 @@ class DataCalculateValueTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->action = $this->actionManager->createInstance('rules_data_calculate_value');
+   }
+diff --git a/tests/src/Unit/Integration/RulesAction/DataConvertTest.php b/tests/src/Unit/Integration/RulesAction/DataConvertTest.php
+index 2e54fa55..ad1d145f 100644
+--- a/tests/src/Unit/Integration/RulesAction/DataConvertTest.php
++++ b/tests/src/Unit/Integration/RulesAction/DataConvertTest.php
+@@ -21,7 +21,7 @@ class DataConvertTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_data_convert');
+diff --git a/tests/src/Unit/Integration/RulesAction/DataListItemAddTest.php b/tests/src/Unit/Integration/RulesAction/DataListItemAddTest.php
+index b6abe2a4..7a02b388 100644
+--- a/tests/src/Unit/Integration/RulesAction/DataListItemAddTest.php
++++ b/tests/src/Unit/Integration/RulesAction/DataListItemAddTest.php
+@@ -20,7 +20,7 @@ class DataListItemAddTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_list_item_add');
+diff --git a/tests/src/Unit/Integration/RulesAction/DataListItemRemoveTest.php b/tests/src/Unit/Integration/RulesAction/DataListItemRemoveTest.php
+index afee2721..6e6ed44c 100644
+--- a/tests/src/Unit/Integration/RulesAction/DataListItemRemoveTest.php
++++ b/tests/src/Unit/Integration/RulesAction/DataListItemRemoveTest.php
+@@ -20,7 +20,7 @@ class DataListItemRemoveTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_list_item_remove');
+diff --git a/tests/src/Unit/Integration/RulesAction/DataSetTest.php b/tests/src/Unit/Integration/RulesAction/DataSetTest.php
+index f28523bd..2d28c86b 100644
+--- a/tests/src/Unit/Integration/RulesAction/DataSetTest.php
++++ b/tests/src/Unit/Integration/RulesAction/DataSetTest.php
+@@ -20,7 +20,7 @@ class DataSetTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->action = $this->actionManager->createInstance('rules_data_set');
+   }
+diff --git a/tests/src/Unit/Integration/RulesAction/EntityCreateTest.php b/tests/src/Unit/Integration/RulesAction/EntityCreateTest.php
+index 681e3626..b0c14455 100644
+--- a/tests/src/Unit/Integration/RulesAction/EntityCreateTest.php
++++ b/tests/src/Unit/Integration/RulesAction/EntityCreateTest.php
+@@ -31,7 +31,7 @@ class EntityCreateTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     // Prepare some mocked bundle field definitions. This is needed because
+diff --git a/tests/src/Unit/Integration/RulesAction/EntityDeleteTest.php b/tests/src/Unit/Integration/RulesAction/EntityDeleteTest.php
+index b1e75587..c51591f4 100644
+--- a/tests/src/Unit/Integration/RulesAction/EntityDeleteTest.php
++++ b/tests/src/Unit/Integration/RulesAction/EntityDeleteTest.php
+@@ -21,7 +21,7 @@ class EntityDeleteTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_entity_delete');
+diff --git a/tests/src/Unit/Integration/RulesAction/EntityFetchByFieldTest.php b/tests/src/Unit/Integration/RulesAction/EntityFetchByFieldTest.php
+index 1d29f22f..9c71a23b 100644
+--- a/tests/src/Unit/Integration/RulesAction/EntityFetchByFieldTest.php
++++ b/tests/src/Unit/Integration/RulesAction/EntityFetchByFieldTest.php
+@@ -23,7 +23,7 @@ class EntityFetchByFieldTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_entity_fetch_by_field');
+diff --git a/tests/src/Unit/Integration/RulesAction/EntityFetchByIdTest.php b/tests/src/Unit/Integration/RulesAction/EntityFetchByIdTest.php
+index b19aea43..cfa42ce7 100644
+--- a/tests/src/Unit/Integration/RulesAction/EntityFetchByIdTest.php
++++ b/tests/src/Unit/Integration/RulesAction/EntityFetchByIdTest.php
+@@ -22,7 +22,7 @@ class EntityFetchByIdTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_entity_fetch_by_id');
+diff --git a/tests/src/Unit/Integration/RulesAction/EntityPathAliasCreateTest.php b/tests/src/Unit/Integration/RulesAction/EntityPathAliasCreateTest.php
+index 56bb563e..790eb665 100644
+--- a/tests/src/Unit/Integration/RulesAction/EntityPathAliasCreateTest.php
++++ b/tests/src/Unit/Integration/RulesAction/EntityPathAliasCreateTest.php
+@@ -32,7 +32,7 @@ class EntityPathAliasCreateTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     // Must enable the path_alias module.
+     $this->enableModule('path_alias');
+diff --git a/tests/src/Unit/Integration/RulesAction/EntitySaveTest.php b/tests/src/Unit/Integration/RulesAction/EntitySaveTest.php
+index 3ceab4eb..fa5042d4 100644
+--- a/tests/src/Unit/Integration/RulesAction/EntitySaveTest.php
++++ b/tests/src/Unit/Integration/RulesAction/EntitySaveTest.php
+@@ -28,7 +28,7 @@ class EntitySaveTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->entity = $this->prophesizeEntity(EntityInterface::class);
+diff --git a/tests/src/Unit/Integration/RulesAction/NodeMakeStickyTest.php b/tests/src/Unit/Integration/RulesAction/NodeMakeStickyTest.php
+index 10500662..69f27de9 100644
+--- a/tests/src/Unit/Integration/RulesAction/NodeMakeStickyTest.php
++++ b/tests/src/Unit/Integration/RulesAction/NodeMakeStickyTest.php
+@@ -21,7 +21,7 @@ class NodeMakeStickyTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_node_make_sticky');
+diff --git a/tests/src/Unit/Integration/RulesAction/NodeMakeUnstickyTest.php b/tests/src/Unit/Integration/RulesAction/NodeMakeUnstickyTest.php
+index d8ca15fb..831d2f66 100644
+--- a/tests/src/Unit/Integration/RulesAction/NodeMakeUnstickyTest.php
++++ b/tests/src/Unit/Integration/RulesAction/NodeMakeUnstickyTest.php
+@@ -21,7 +21,7 @@ class NodeMakeUnstickyTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_node_make_unsticky');
+diff --git a/tests/src/Unit/Integration/RulesAction/NodePromoteTest.php b/tests/src/Unit/Integration/RulesAction/NodePromoteTest.php
+index b0d1c941..965a18bb 100644
+--- a/tests/src/Unit/Integration/RulesAction/NodePromoteTest.php
++++ b/tests/src/Unit/Integration/RulesAction/NodePromoteTest.php
+@@ -21,7 +21,7 @@ class NodePromoteTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_node_promote');
+diff --git a/tests/src/Unit/Integration/RulesAction/NodePublishTest.php b/tests/src/Unit/Integration/RulesAction/NodePublishTest.php
+index 90208c97..51eb1223 100644
+--- a/tests/src/Unit/Integration/RulesAction/NodePublishTest.php
++++ b/tests/src/Unit/Integration/RulesAction/NodePublishTest.php
+@@ -21,7 +21,7 @@ class NodePublishTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_node_publish');
+diff --git a/tests/src/Unit/Integration/RulesAction/NodeUnpromoteTest.php b/tests/src/Unit/Integration/RulesAction/NodeUnpromoteTest.php
+index cb977608..df825eb2 100644
+--- a/tests/src/Unit/Integration/RulesAction/NodeUnpromoteTest.php
++++ b/tests/src/Unit/Integration/RulesAction/NodeUnpromoteTest.php
+@@ -21,7 +21,7 @@ class NodeUnpromoteTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_node_unpromote');
+diff --git a/tests/src/Unit/Integration/RulesAction/NodeUnpublishTest.php b/tests/src/Unit/Integration/RulesAction/NodeUnpublishTest.php
+index 5cdefe73..7d05530d 100644
+--- a/tests/src/Unit/Integration/RulesAction/NodeUnpublishTest.php
++++ b/tests/src/Unit/Integration/RulesAction/NodeUnpublishTest.php
+@@ -21,7 +21,7 @@ class NodeUnpublishTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_node_unpublish');
+diff --git a/tests/src/Unit/Integration/RulesAction/PathAliasCreateTest.php b/tests/src/Unit/Integration/RulesAction/PathAliasCreateTest.php
+index bf7450ae..36387cb1 100644
+--- a/tests/src/Unit/Integration/RulesAction/PathAliasCreateTest.php
++++ b/tests/src/Unit/Integration/RulesAction/PathAliasCreateTest.php
+@@ -30,7 +30,7 @@ class PathAliasCreateTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     // Must enable the path_alias module.
+     $this->enableModule('path_alias');
+diff --git a/tests/src/Unit/Integration/RulesAction/PathAliasDeleteByAliasTest.php b/tests/src/Unit/Integration/RulesAction/PathAliasDeleteByAliasTest.php
+index 34e3301a..7ab0032a 100644
+--- a/tests/src/Unit/Integration/RulesAction/PathAliasDeleteByAliasTest.php
++++ b/tests/src/Unit/Integration/RulesAction/PathAliasDeleteByAliasTest.php
+@@ -29,7 +29,7 @@ class PathAliasDeleteByAliasTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     // Must enable the path_alias module.
+     $this->enableModule('path_alias');
+diff --git a/tests/src/Unit/Integration/RulesAction/PathAliasDeleteByPathTest.php b/tests/src/Unit/Integration/RulesAction/PathAliasDeleteByPathTest.php
+index 250f39df..0c1c3177 100644
+--- a/tests/src/Unit/Integration/RulesAction/PathAliasDeleteByPathTest.php
++++ b/tests/src/Unit/Integration/RulesAction/PathAliasDeleteByPathTest.php
+@@ -29,7 +29,7 @@ class PathAliasDeleteByPathTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     // Must enable the path_alias module.
+     $this->enableModule('path_alias');
+diff --git a/tests/src/Unit/Integration/RulesAction/SendAccountEmailTest.php b/tests/src/Unit/Integration/RulesAction/SendAccountEmailTest.php
+index 1facb13d..a5c8befa 100644
+--- a/tests/src/Unit/Integration/RulesAction/SendAccountEmailTest.php
++++ b/tests/src/Unit/Integration/RulesAction/SendAccountEmailTest.php
+@@ -28,7 +28,7 @@ namespace Drupal\Tests\rules\Unit\Integration\RulesAction {
+     /**
+      * {@inheritdoc}
+      */
+-    protected function setUp() {
++    protected function setUp(): void {
+       parent::setUp();
+ 
+       $this->enableModule('user');
+diff --git a/tests/src/Unit/Integration/RulesAction/SystemEmailToUsersOfRoleTest.php b/tests/src/Unit/Integration/RulesAction/SystemEmailToUsersOfRoleTest.php
+index 7a2bc16a..abdd508d 100644
+--- a/tests/src/Unit/Integration/RulesAction/SystemEmailToUsersOfRoleTest.php
++++ b/tests/src/Unit/Integration/RulesAction/SystemEmailToUsersOfRoleTest.php
+@@ -47,7 +47,7 @@ class SystemEmailToUsersOfRoleTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->enableModule('user');
+ 
+diff --git a/tests/src/Unit/Integration/RulesAction/SystemMessageTest.php b/tests/src/Unit/Integration/RulesAction/SystemMessageTest.php
+index 44c6a388..29789580 100644
+--- a/tests/src/Unit/Integration/RulesAction/SystemMessageTest.php
++++ b/tests/src/Unit/Integration/RulesAction/SystemMessageTest.php
+@@ -21,7 +21,7 @@ class SystemMessageTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->action = $this->actionManager->createInstance('rules_system_message');
+diff --git a/tests/src/Unit/Integration/RulesAction/SystemPageRedirectTest.php b/tests/src/Unit/Integration/RulesAction/SystemPageRedirectTest.php
+index 2b452b22..6db49729 100644
+--- a/tests/src/Unit/Integration/RulesAction/SystemPageRedirectTest.php
++++ b/tests/src/Unit/Integration/RulesAction/SystemPageRedirectTest.php
+@@ -61,7 +61,7 @@ namespace Drupal\Tests\rules\Unit\Integration\RulesAction {
+     /**
+      * {@inheritdoc}
+      */
+-    protected function setUp() {
++    protected function setUp(): void {
+       parent::setUp();
+ 
+       // Mock the Rules debug logger service, make it return our mocked logger,
+diff --git a/tests/src/Unit/Integration/RulesAction/SystemSendEmailTest.php b/tests/src/Unit/Integration/RulesAction/SystemSendEmailTest.php
+index 171b2e01..1c59ce50 100644
+--- a/tests/src/Unit/Integration/RulesAction/SystemSendEmailTest.php
++++ b/tests/src/Unit/Integration/RulesAction/SystemSendEmailTest.php
+@@ -34,7 +34,7 @@ class SystemSendEmailTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->mailManager = $this->prophesize(MailManagerInterface::class);
+     $this->container->set('plugin.manager.mail', $this->mailManager->reveal());
+diff --git a/tests/src/Unit/Integration/RulesAction/UnBanIpTest.php b/tests/src/Unit/Integration/RulesAction/UnBanIpTest.php
+index 12bfe679..4118f7bb 100644
+--- a/tests/src/Unit/Integration/RulesAction/UnBanIpTest.php
++++ b/tests/src/Unit/Integration/RulesAction/UnBanIpTest.php
+@@ -45,7 +45,7 @@ class UnBanIpTest extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     // Must enable the ban module.
+     $this->enableModule('ban');
+diff --git a/tests/src/Unit/Integration/RulesAction/UserBlockTest.php b/tests/src/Unit/Integration/RulesAction/UserBlockTest.php
+index a5624206..51c93a25 100644
+--- a/tests/src/Unit/Integration/RulesAction/UserBlockTest.php
++++ b/tests/src/Unit/Integration/RulesAction/UserBlockTest.php
+@@ -49,7 +49,7 @@ class UserBlockTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->enableModule('user');
+ 
+diff --git a/tests/src/Unit/Integration/RulesAction/UserRoleAddTest.php b/tests/src/Unit/Integration/RulesAction/UserRoleAddTest.php
+index f65698e8..3fbded3c 100644
+--- a/tests/src/Unit/Integration/RulesAction/UserRoleAddTest.php
++++ b/tests/src/Unit/Integration/RulesAction/UserRoleAddTest.php
+@@ -23,7 +23,7 @@ class UserRoleAddTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->enableModule('user');
+     $this->action = $this->actionManager->createInstance('rules_user_role_add');
+diff --git a/tests/src/Unit/Integration/RulesAction/UserRoleRemoveTest.php b/tests/src/Unit/Integration/RulesAction/UserRoleRemoveTest.php
+index 02e17d9d..f9cef581 100644
+--- a/tests/src/Unit/Integration/RulesAction/UserRoleRemoveTest.php
++++ b/tests/src/Unit/Integration/RulesAction/UserRoleRemoveTest.php
+@@ -22,7 +22,7 @@ class UserRoleRemoveTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->enableModule('user');
+     $this->action = $this->actionManager->createInstance('rules_user_role_remove');
+diff --git a/tests/src/Unit/Integration/RulesAction/UserUnblockTest.php b/tests/src/Unit/Integration/RulesAction/UserUnblockTest.php
+index 3f3578ce..f2f29f93 100644
+--- a/tests/src/Unit/Integration/RulesAction/UserUnblockTest.php
++++ b/tests/src/Unit/Integration/RulesAction/UserUnblockTest.php
+@@ -41,7 +41,7 @@ class UserUnblockTest extends RulesEntityIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $this->enableModule('user');
+     $this->action = $this->actionManager->createInstance('rules_user_unblock');
+diff --git a/tests/src/Unit/Integration/RulesEntityIntegrationTestBase.php b/tests/src/Unit/Integration/RulesEntityIntegrationTestBase.php
+index 71d2ed88..44706125 100644
+--- a/tests/src/Unit/Integration/RulesEntityIntegrationTestBase.php
++++ b/tests/src/Unit/Integration/RulesEntityIntegrationTestBase.php
+@@ -46,7 +46,7 @@ abstract class RulesEntityIntegrationTestBase extends RulesIntegrationTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->namespaces['Drupal\\Core\\Entity'] = $this->root . '/core/lib/Drupal/Core/Entity';
+diff --git a/tests/src/Unit/Integration/RulesIntegrationTestBase.php b/tests/src/Unit/Integration/RulesIntegrationTestBase.php
+index 706c95ff..ee21a678 100644
+--- a/tests/src/Unit/Integration/RulesIntegrationTestBase.php
++++ b/tests/src/Unit/Integration/RulesIntegrationTestBase.php
+@@ -152,7 +152,7 @@ abstract class RulesIntegrationTestBase extends UnitTestCase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $container = new ContainerBuilder();
+     // Register plugin managers used by Rules, but mock some unwanted
+diff --git a/tests/src/Unit/OrExpressionTest.php b/tests/src/Unit/OrExpressionTest.php
+index 2a4b0c9c..0158c276 100644
+--- a/tests/src/Unit/OrExpressionTest.php
++++ b/tests/src/Unit/OrExpressionTest.php
+@@ -23,7 +23,7 @@ class OrExpressionTest extends RulesUnitTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->or = new OrExpression([], '', ['label' => 'Condition set (OR)'], $this->expressionManager->reveal(), $this->rulesDebugLogger->reveal());
+diff --git a/tests/src/Unit/RuleExpressionTest.php b/tests/src/Unit/RuleExpressionTest.php
+index 84a4a859..f7b37bcb 100644
+--- a/tests/src/Unit/RuleExpressionTest.php
++++ b/tests/src/Unit/RuleExpressionTest.php
+@@ -49,7 +49,7 @@ class RuleExpressionTest extends RulesUnitTestBase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     $this->expressionManager = $this->prophesize(ExpressionManagerInterface::class);
+diff --git a/tests/src/Unit/RulesDebugLoggerChannelTest.php b/tests/src/Unit/RulesDebugLoggerChannelTest.php
+index 48cdc617..87270d52 100644
+--- a/tests/src/Unit/RulesDebugLoggerChannelTest.php
++++ b/tests/src/Unit/RulesDebugLoggerChannelTest.php
+@@ -49,7 +49,7 @@ class RulesDebugLoggerChannelTest extends UnitTestCase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+     $container = new ContainerBuilder();
+     $this->rulesDebugLogger = $this->prophesize(LoggerChannelInterface::class)->reveal();
+diff --git a/tests/src/Unit/RulesUnitTestBase.php b/tests/src/Unit/RulesUnitTestBase.php
+index bfb4cfde..60d172c9 100644
+--- a/tests/src/Unit/RulesUnitTestBase.php
++++ b/tests/src/Unit/RulesUnitTestBase.php
+@@ -60,7 +60,7 @@ abstract class RulesUnitTestBase extends UnitTestCase {
+   /**
+    * {@inheritdoc}
+    */
+-  protected function setUp() {
++  protected function setUp(): void {
+     parent::setUp();
+ 
+     // A Condition that's always TRUE.
