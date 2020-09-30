@@ -117,8 +117,8 @@ class EntityAutocomplete extends Textfield {
 
     // Provide default values and sanity checks for the #autocreate parameter.
     if ($element['#autocreate']) {
-      if (!isset($element['bundle'])) {
-        throw new \InvalidArgumentException("Missing required bundle parameter.");
+      if (!isset($element['#autocreate']['bundle'])) {
+        throw new \InvalidArgumentException("Missing required #autocreate['bundle'] parameter.");
       }
       // Default the autocreate user ID to the current user.
       $element['#autocreate']['uid'] = isset($element['#autocreate']['uid']) ? $element['#autocreate']['uid'] : \Drupal::currentUser()->id();
@@ -186,7 +186,7 @@ class EntityAutocomplete extends Textfield {
             // Auto-create item. See an example of how this is handled in
             // \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem::presave().
             $value[] = [
-              'entity' => $handler->createNewEntity($element['#target_type'], $element['bundle'], $input, $element['#autocreate']['uid']),
+              'entity' => $handler->createNewEntity($element['#target_type'], $element['#autocreate']['bundle'], $input, $element['#autocreate']['uid']),
             ];
           }
         }
