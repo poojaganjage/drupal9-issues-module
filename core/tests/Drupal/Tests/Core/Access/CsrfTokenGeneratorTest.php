@@ -173,6 +173,9 @@ class CsrfTokenGeneratorTest extends UnitTestCase {
    *
    * @covers ::validate
    * @dataProvider providerTestInvalidParameterTypes
+   *
+   * @expectedDeprecation Passing non-string $token is deprecated in drupal:9.1.0 and is removed
+   from drupal:10.0.0.
    */
   public function testInvalidParameterTypes($token, $value = '') {
     $this->setupDefaultExpectations();

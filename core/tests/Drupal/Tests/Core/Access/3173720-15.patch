@@ -1,0 +1,41 @@
+diff --git a/core/lib/Drupal/Core/Access/CsrfTokenGenerator.php b/core/lib/Drupal/Core/Access/CsrfTokenGenerator.php
+index 0614602..3ba3d31 100644
+--- a/core/lib/Drupal/Core/Access/CsrfTokenGenerator.php
++++ b/core/lib/Drupal/Core/Access/CsrfTokenGenerator.php
+@@ -80,8 +80,16 @@ public function get($value = '') {
+    *
+    * @return bool
+    *   TRUE for a valid token, FALSE for an invalid token.
++   *
++   * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0.
++   *   Not passing non-string $token variable.
+    */
+   public function validate($token, $value = '') {
++    if (!is_string($token)) {
++      @trigger_error('Passing non-string $token to ' . __METHOD__ . '() is deprecated in drupal:9.1.0 and is removed
++        from drupal:10.0.0. Refactor calling code. See https://www.drupal.org/node/3156880', E_USER_DEPRECATED);
++      return FALSE;
++    }
+     $seed = $this->sessionMetadata->getCsrfTokenSeed();
+     if (empty($seed)) {
+       return FALSE;
+diff --git a/core/tests/Drupal/Tests/Core/Access/CsrfTokenGeneratorTest.php b/core/tests/Drupal/Tests/Core/Access/CsrfTokenGeneratorTest.php
+index 3ac2051..8627234 100644
+--- a/core/tests/Drupal/Tests/Core/Access/CsrfTokenGeneratorTest.php
++++ b/core/tests/Drupal/Tests/Core/Access/CsrfTokenGeneratorTest.php
+@@ -173,11 +173,14 @@ public function providerTestValidateParameterTypes() {
+    *
+    * @covers ::validate
+    * @dataProvider providerTestInvalidParameterTypes
++   *
++   * @expectedDeprecation Passing non-string $token is deprecated in drupal:9.1.0 and is removed
++   from drupal:10.0.0.
+    */
+   public function testInvalidParameterTypes($token, $value = '') {
+     $this->setupDefaultExpectations();
+ 
+-    $this->expectException(\InvalidArgumentException::class);
++    $this->throwException(new \InvalidArgumentException::class);
+     $this->generator->validate($token, $value);
+   }
+
