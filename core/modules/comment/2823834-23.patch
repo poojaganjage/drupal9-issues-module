@@ -1,0 +1,22 @@
+diff --git a/core/modules/comment/comment.module b/core/modules/comment/comment.module
+index 23a81f1..bec5630 100644
+--- a/core/modules/comment/comment.module
++++ b/core/modules/comment/comment.module
+@@ -668,7 +668,7 @@ function template_preprocess_comment(&$variables) {
+  */
+ function template_preprocess_field__comment(&$variables) {
+   $element = $variables['element'];
+-  if ($element['#field_type'] == 'comment') {
++
+     // Provide contextual information.
+     $variables['comment_display_mode'] = $element[0]['#comment_display_mode'];
+     $variables['comment_type'] = $element[0]['#comment_type'];
+@@ -679,7 +679,7 @@ function template_preprocess_field__comment(&$variables) {
+     // Create separate variables for the comments and comment form.
+     $variables['comments'] = $element[0]['comments'];
+     $variables['comment_form'] = $element[0]['comment_form'];
+-  }
++
+ }
+ 
+ /**
