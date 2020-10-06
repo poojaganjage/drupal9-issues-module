@@ -55,8 +55,8 @@ class UserFieldsAccessChangeTest extends UserTestBase {
   }
 
   /**
-   * Tests the user name formatter shows a link to the user when there is
-   * access but not otherwise.
+   * Tests the user name formatter and shows a link to the user
+   when there is access not.
    */
   public function testUserNameLink() {
     $test_user = $this->drupalCreateUser();
@@ -66,7 +66,7 @@ class UserFieldsAccessChangeTest extends UserTestBase {
       'title' => 'View user profile.',
       'class' => 'username',
     ];
-    $link = $test_user->toLink(NULL, 'canonical', ['attributes' => $attributes])->toString();
+    $test_user->toLink(NULL, 'canonical', ['attributes' => $attributes])->toString();
 
     // No access, so no link.
     $this->drupalGet('test_user_fields_access');
