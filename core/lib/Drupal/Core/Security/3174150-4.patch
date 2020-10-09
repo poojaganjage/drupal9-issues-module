@@ -1,0 +1,12 @@
+diff --git a/core/lib/Drupal/Core/Security/DoTrustedCallbackTrait.php b/core/lib/Drupal/Core/Security/DoTrustedCallbackTrait.php
+index b76c5f6..4548a0a 100644
+--- a/core/lib/Drupal/Core/Security/DoTrustedCallbackTrait.php
++++ b/core/lib/Drupal/Core/Security/DoTrustedCallbackTrait.php
+@@ -97,7 +97,6 @@ public function doTrustedCallback(callable $callback, array $args, $message, $er
+       }
+     }
+ 
+-    // @TODO Allow named arguments in https://www.drupal.org/node/3174150
+     return call_user_func_array($callback, $args);
+   }
+ 

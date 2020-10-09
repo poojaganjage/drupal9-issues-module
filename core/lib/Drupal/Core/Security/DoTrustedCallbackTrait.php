@@ -97,7 +97,6 @@ trait DoTrustedCallbackTrait {
       }
     }
 
-    // @TODO Allow named arguments in https://www.drupal.org/node/3174150
     return call_user_func_array($callback, $args);
   }
 
