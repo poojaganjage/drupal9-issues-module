@@ -1,0 +1,85 @@
+diff --git a/core/modules/jsonapi/tests/src/Functional/ResourceTestBase.php b/core/modules/jsonapi/tests/src/Functional/ResourceTestBase.php
+index 47b0ad1..76f2063 100644
+--- a/core/modules/jsonapi/tests/src/Functional/ResourceTestBase.php
++++ b/core/modules/jsonapi/tests/src/Functional/ResourceTestBase.php
+@@ -1955,7 +1955,6 @@ public function testPostIndividual() {
+     // Try with all of the following request bodies.
+     $unparseable_request_body = '!{>}<';
+     $parseable_valid_request_body = Json::encode($this->getPostDocument());
+-    /* $parseable_valid_request_body_2 = Json::encode($this->getNormalizedPostEntity()); */
+     $parseable_invalid_request_body_missing_type = Json::encode($this->removeResourceTypeFromDocument($this->getPostDocument()));
+     if ($this->entity->getEntityType()->hasKey('label')) {
+       $parseable_invalid_request_body = Json::encode($this->makeNormalizationInvalid($this->getPostDocument(), 'label'));
+@@ -2177,7 +2176,6 @@ public function testPatchIndividual() {
+     // Try with all of the following request bodies.
+     $unparseable_request_body = '!{>}<';
+     $parseable_valid_request_body = Json::encode($this->getPatchDocument());
+-    /* $parseable_valid_request_body_2 = Json::encode($this->getNormalizedPatchEntity()); */
+     if ($this->entity->getEntityType()->hasKey('label')) {
+       $parseable_invalid_request_body = Json::encode($this->makeNormalizationInvalid($this->getPatchDocument(), 'label'));
+     }
+diff --git a/core/modules/rest/tests/src/Functional/EntityResource/EntityResourceTestBase.php b/core/modules/rest/tests/src/Functional/EntityResource/EntityResourceTestBase.php
+index 910c7c6..c08eb82 100644
+--- a/core/modules/rest/tests/src/Functional/EntityResource/EntityResourceTestBase.php
++++ b/core/modules/rest/tests/src/Functional/EntityResource/EntityResourceTestBase.php
+@@ -298,23 +298,6 @@ protected function getNormalizedPatchEntity() {
+     return $this->getNormalizedPostEntity();
+   }
+ 
+-  /**
+-   * Gets the second normalized POST entity.
+-   *
+-   * Entity types can have non-sequential IDs, and in that case the second
+-   * entity created for POST testing needs to be able to specify a different ID.
+-   *
+-   * @see ::testPost
+-   * @see ::getNormalizedPostEntity
+-   *
+-   * @return array
+-   *   An array structure as returned by ::getNormalizedPostEntity().
+-   */
+-  protected function getSecondNormalizedPostEntity() {
+-    // Return the values of the "parent" method by default.
+-    return $this->getNormalizedPostEntity();
+-  }
+-
+   /**
+    * Gets the normalized POST entity with random values for its unique fields.
+    *
+@@ -718,7 +701,6 @@ public function testPost() {
+     // Try with all of the following request bodies.
+     $unparseable_request_body = '!{>}<';
+     $parseable_valid_request_body = $this->serializer->encode($this->getNormalizedPostEntity(), static::$format);
+-    $parseable_valid_request_body_2 = $this->serializer->encode($this->getSecondNormalizedPostEntity(), static::$format);
+     $parseable_invalid_request_body = $this->serializer->encode($this->makeNormalizationInvalid($this->getNormalizedPostEntity(), 'label'), static::$format);
+     $parseable_invalid_request_body_2 = $this->serializer->encode($this->getNormalizedPostEntity() + ['uuid' => [$this->randomMachineName(129)]], static::$format);
+     $parseable_invalid_request_body_3 = $this->serializer->encode($this->getNormalizedPostEntity() + ['field_rest_test' => [['value' => $this->randomString()]]], static::$format);
+@@ -897,7 +879,6 @@ public function testPatch() {
+     // Try with all of the following request bodies.
+     $unparseable_request_body         = '!{>}<';
+     $parseable_valid_request_body     = $this->serializer->encode($this->getNormalizedPatchEntity(), static::$format);
+-    $parseable_valid_request_body_2   = $this->serializer->encode($this->getNormalizedPatchEntity(), static::$format);
+     $parseable_invalid_request_body   = $this->serializer->encode($this->makeNormalizationInvalid($this->getNormalizedPatchEntity(), 'label'), static::$format);
+     $parseable_invalid_request_body_2 = $this->serializer->encode($this->getNormalizedPatchEntity() + ['field_rest_test' => [['value' => $this->randomString()]]], static::$format);
+     // The 'field_rest_test' field does not allow 'view' access, so does not end
+diff --git a/core/modules/workspaces/tests/src/Functional/EntityResource/WorkspaceResourceTestBase.php b/core/modules/workspaces/tests/src/Functional/EntityResource/WorkspaceResourceTestBase.php
+index 1c35e37..51b5176 100644
+--- a/core/modules/workspaces/tests/src/Functional/EntityResource/WorkspaceResourceTestBase.php
++++ b/core/modules/workspaces/tests/src/Functional/EntityResource/WorkspaceResourceTestBase.php
+@@ -159,16 +159,6 @@ protected function getNormalizedPostEntity() {
+     ];
+   }
+ 
+-  /**
+-   * {@inheritdoc}
+-   */
+-  protected function getSecondNormalizedPostEntity() {
+-    $normalized_post_entity = $this->getNormalizedPostEntity();
+-    $normalized_post_entity['id'][0]['value'] = static::$secondCreatedEntityId;
+-
+-    return $normalized_post_entity;
+-  }
+-
+   /**
+    * {@inheritdoc}
+    */
