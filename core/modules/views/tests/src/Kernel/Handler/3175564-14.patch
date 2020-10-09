@@ -1,0 +1,14 @@
+diff --git a/core/modules/views/tests/src/Kernel/Handler/AreaOrderTest.php b/core/modules/views/tests/src/Kernel/Handler/AreaOrderTest.php
+index 24af453..5390bf0 100644
+--- a/core/modules/views/tests/src/Kernel/Handler/AreaOrderTest.php
++++ b/core/modules/views/tests/src/Kernel/Handler/AreaOrderTest.php
+@@ -57,8 +57,7 @@ protected function setUpFixtures() {
+    * Tests the order of the handlers.
+    */
+   public function testAreaOrder() {
+-    $renderer = $this->container->get('renderer');
+-    $this->container->get('renderer');
++
+     $view = Views::getView('test_area_order');
+     $renderable = $view->buildRenderable();
+     $output = $this->render($renderable);
