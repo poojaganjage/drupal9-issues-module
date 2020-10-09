@@ -58,6 +58,7 @@ class AreaOrderTest extends ViewsKernelTestBase {
    */
   public function testAreaOrder() {
     $renderer = $this->container->get('renderer');
+    $this->container->get('renderer');
     $view = Views::getView('test_area_order');
     $renderable = $view->buildRenderable();
     $output = $this->render($renderable);
