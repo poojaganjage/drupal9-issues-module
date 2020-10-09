@@ -57,7 +57,7 @@ class AreaOrderTest extends ViewsKernelTestBase {
    * Tests the order of the handlers.
    */
   public function testAreaOrder() {
-    $this->container->get('renderer');
+    $renderer = $this->container->get('renderer');
     $view = Views::getView('test_area_order');
     $renderable = $view->buildRenderable();
     $output = $this->render($renderable);
