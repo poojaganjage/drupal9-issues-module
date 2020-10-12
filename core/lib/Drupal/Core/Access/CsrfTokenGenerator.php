@@ -80,12 +80,9 @@ class CsrfTokenGenerator {
    *
    * @return bool
    *   TRUE for a valid token, FALSE for an invalid token.
-   *
-   * @deprecated in drupal:9.1.0 and is removed from drupal:10.0.0.
-   *   Not passing non-string $token variable.
    */
   public function validate($token, $value = '') {
-    if (!is_string($token)) {
+    if (empty($token) || !is_string($token)) {
       @trigger_error('Passing non-string $token to ' . __METHOD__ . '() is deprecated in drupal:9.1.0 and is removed
         from drupal:10.0.0. Refactor calling code. See https://www.drupal.org/node/3156880', E_USER_DEPRECATED);
       return FALSE;
@@ -94,8 +91,8 @@ class CsrfTokenGenerator {
     if (empty($seed)) {
       return FALSE;
     }
-
-    return hash_equals($this->computeToken($seed, $value), $token);
+    $value = $this->computeToken($seed, $value);
+    return hash_equals($value, $token);
   }
 
   /**
