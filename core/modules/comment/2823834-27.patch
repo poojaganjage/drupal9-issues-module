@@ -1,0 +1,52 @@
+diff --git a/core/modules/comment/templates/field--comment.html.twig b/core/modules/comment/templates/field--comment.html.twig
+index 879f4d5..7a7dfa0 100644
+--- a/core/modules/comment/templates/field--comment.html.twig
++++ b/core/modules/comment/templates/field--comment.html.twig
+@@ -23,7 +23,7 @@
+  * - label_display: The display settings for the label.
+  *
+  * @see template_preprocess_field()
+- * @see comment_preprocess_field()
++ * @see template_preprocess_field__comment()
+  */
+ #}
+ <section{{ attributes }}>
+diff --git a/core/themes/classy/templates/field/field--comment.html.twig b/core/themes/classy/templates/field/field--comment.html.twig
+index 1ec3ee6..65a591e 100644
+--- a/core/themes/classy/templates/field/field--comment.html.twig
++++ b/core/themes/classy/templates/field/field--comment.html.twig
+@@ -22,7 +22,7 @@
+  * - label_display: The display settings for the label.
+  *
+  * @see template_preprocess_field()
+- * @see comment_preprocess_field()
++ * @see template_preprocess_field__comment()
+  */
+ #}
+ {%
+diff --git a/core/themes/stable/templates/field/field--comment.html.twig b/core/themes/stable/templates/field/field--comment.html.twig
+index 33a60ae..7fc6e7c 100644
+--- a/core/themes/stable/templates/field/field--comment.html.twig
++++ b/core/themes/stable/templates/field/field--comment.html.twig
+@@ -23,7 +23,7 @@
+  * - label_display: The display settings for the label.
+  *
+  * @see template_preprocess_field()
+- * @see comment_preprocess_field()
++ * @see template_preprocess_field__comment()
+  */
+ #}
+ <section{{ attributes }}>
+diff --git a/core/themes/stable9/templates/field/field--comment.html.twig b/core/themes/stable9/templates/field/field--comment.html.twig
+index 33a60ae..7fc6e7c 100644
+--- a/core/themes/stable9/templates/field/field--comment.html.twig
++++ b/core/themes/stable9/templates/field/field--comment.html.twig
+@@ -23,7 +23,7 @@
+  * - label_display: The display settings for the label.
+  *
+  * @see template_preprocess_field()
+- * @see comment_preprocess_field()
++ * @see template_preprocess_field__comment()
+  */
+ #}
+ <section{{ attributes }}>
