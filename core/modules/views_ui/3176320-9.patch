@@ -1,0 +1,129 @@
+diff --git a/core/modules/views_ui/tests/src/Functional/DisplayTest.php b/core/modules/views_ui/tests/src/Functional/DisplayTest.php
+index 85d2efd..ee3048d 100644
+--- a/core/modules/views_ui/tests/src/Functional/DisplayTest.php
++++ b/core/modules/views_ui/tests/src/Functional/DisplayTest.php
+@@ -21,7 +21,7 @@ class DisplayTest extends UITestBase {
+   public static $testViews = ['test_display'];
+ 
+   /**
+-   * Modules to enable
++   * Modules to enable.
+    *
+    * @var array
+    */
+@@ -36,11 +36,12 @@ class DisplayTest extends UITestBase {
+    * Tests adding a display.
+    */
+   public function testAddDisplay() {
+-    $view = $this->randomView();
+     $this->assertNoText('Block');
+     $this->assertNoText('Block 2');
+ 
+-    $this->drupalPostForm(NULL, [], t('Add @display', ['@display' => 'Block']));
++    $this->drupalPostForm(NULL, [], t('Add @display', [
++      '@display' => 'Block',
++    ]));
+     $this->assertText('Block');
+     $this->assertNoText('Block 2');
+   }
+@@ -140,7 +141,9 @@ public function testDisplayAreas() {
+ 
+     // Assert that the expected text is found in each area category.
+     foreach ($areas as $type) {
+-      $element = $this->xpath('//div[contains(@class, :class)]/div', [':class' => $type]);
++      $element = $this->xpath('//div[contains(@class, :class)]/div', [
++        ':class' => $type,
++      ]);
+       $this->assertEqual($element[0]->getHtml(), new FormattableMarkup('The selected display type does not use @type plugins', ['@type' => $type]));
+     }
+   }
+@@ -153,29 +156,38 @@ public function testLinkDisplay() {
+     $path = 'admin/structure/views/view/test_display/edit/block_1';
+     $link_display_path = 'admin/structure/views/nojs/display/test_display/block_1/link_display';
+ 
+-    // Test the link text displays 'None' and not 'Block 1'
++    // Test the link text displays 'None' and not 'Block 1'.
+     $this->drupalGet($path);
+-    $result = $this->xpath("//a[contains(@href, :path)]", [':path' => $link_display_path]);
++    $result = $this->xpath("//a[contains(@href, :path)]", [
++      ':path' => $link_display_path,
++    ]);
+     $this->assertEqual($result[0]->getHtml(), t('None'), 'Make sure that the link option summary shows "None" by default.');
+ 
+     $this->drupalGet($link_display_path);
+     $this->assertFieldChecked('edit-link-display-0');
+ 
+     // Test the default radio option on the link display form.
+-    $this->drupalPostForm($link_display_path, ['link_display' => 'page_1'], t('Apply'));
++    $this->drupalPostForm($link_display_path, [
++      'link_display' => 'page_1',
++    ], t('Apply'));
+     // The form redirects to the master display.
+     $this->drupalGet($path);
+ 
+-    $result = $this->xpath("//a[contains(@href, :path)]", [':path' => $link_display_path]);
++    $result = $this->xpath("//a[contains(@href, :path)]", [
++      ':path' => $link_display_path,
++    ]);
+     $this->assertEqual($result[0]->getHtml(), 'Page', 'Make sure that the link option summary shows the right linked display.');
+ 
+-    $this->drupalPostForm($link_display_path, ['link_display' => 'custom_url', 'link_url' => 'a-custom-url'], t('Apply'));
++    $this->drupalPostForm($link_display_path, [
++      'link_display' => 'custom_url',
++      'link_url' => 'a-custom-url',
++    ], t('Apply'));
+     // The form redirects to the master display.
+     $this->drupalGet($path);
+ 
+     $this->assertSession()->linkExists(t('Custom URL'), 0, 'The link option has custom URL as summary.');
+ 
+-    // Test the default link_url value for new display
++    // Test the default link_url value for new display.
+     $this->drupalPostForm(NULL, [], t('Add Block'));
+     $this->assertUrl('admin/structure/views/view/test_display/edit/block_2');
+     $this->clickLink(t('Custom URL'));
+@@ -191,14 +203,20 @@ public function testViewStatus() {
+ 
+     // The view should initially have the enabled class on its form wrapper.
+     $this->drupalGet('admin/structure/views/view/' . $id);
+-    $elements = $this->xpath('//div[contains(@class, :edit) and contains(@class, :status)]', [':edit' => 'views-edit-view', ':status' => 'enabled']);
++    $elements = $this->xpath('//div[contains(@class, :edit) and contains(@class, :status)]', [
++      ':edit' => 'views-edit-view',
++      ':status' => 'enabled',
++    ]);
+     $this->assertNotEmpty($elements, 'The enabled class was found on the form wrapper');
+ 
+     $view = Views::getView($id);
+     $view->storage->disable()->save();
+ 
+     $this->drupalGet('admin/structure/views/view/' . $id);
+-    $elements = $this->xpath('//div[contains(@class, :edit) and contains(@class, :status)]', [':edit' => 'views-edit-view', ':status' => 'disabled']);
++    $elements = $this->xpath('//div[contains(@class, :edit) and contains(@class, :status)]', [
++      ':edit' => 'views-edit-view',
++      ':status' => 'disabled',
++    ]);
+     $this->assertNotEmpty($elements, 'The disabled class was found on the form wrapper.');
+   }
+ 
+@@ -240,7 +258,9 @@ public function testActionLinks() {
+     $display_title = "'<test>'";
+     $this->drupalGet('admin/structure/views/view/test_display');
+     $display_title_path = 'admin/structure/views/nojs/display/test_display/block_1/display_title';
+-    $this->drupalPostForm($display_title_path, ['display_title' => $display_title], t('Apply'));
++    $this->drupalPostForm($display_title_path, [
++      'display_title' => $display_title,
++    ], t('Apply'));
+ 
+     // Ensure that the title is escaped as expected.
+     $this->assertEscaped($display_title);
+@@ -271,7 +291,9 @@ public function testHideDisplayOverride() {
+     $this->assertText('All displays');
+ 
+     // Remove a display and test if the override option is hidden.
+-    $this->drupalPostForm('admin/structure/views/view/test_display/edit/block_1', [], t('Delete @display', ['@display' => 'Block']));
++    $this->drupalPostForm('admin/structure/views/view/test_display/edit/block_1', [], t('Delete @display', [
++      '@display' => 'Block',
++    ]));
+     $this->drupalPostForm(NULL, [], t('Save'));
+ 
+     $this->drupalGet('admin/structure/views/nojs/handler/test_display/page_1/field/title');
