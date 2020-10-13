@@ -9,7 +9,6 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBaseTrait;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -25,7 +24,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class TestProcessor extends AggregatorPluginSettingsBase implements ProcessorInterface, ContainerFactoryPluginInterface {
   use ConfigFormBaseTrait;
-  use StringTranslationTrait;
 
   /**
    * Contains the configuration object factory.
@@ -79,13 +77,13 @@ class TestProcessor extends AggregatorPluginSettingsBase implements ProcessorInt
 
     $form['processors'][$info['id']] = [
       '#type' => 'details',
-      '#title' => $this->t('Test processor settings'),
+      '#title' => t('Test processor settings'),
       '#description' => $info['description'],
       '#open' => in_array($info['id'], $processors),
     ];
     // Add some dummy settings to verify settingsForm is called.
     $form['processors'][$info['id']]['dummy_length'] = [
-      '#title' => $this->t('Dummy length setting'),
+      '#title' => t('Dummy length setting'),
       '#type' => 'number',
       '#min' => 1,
       '#max' => 1000,
