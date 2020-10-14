@@ -78,11 +78,6 @@ class JsonApiDocumentTopLevelNormalizerTest extends JsonapiKernelTestBase {
   protected $includeResolver;
 
   /**
-   * @var \Drupal\file\Entity\File
-   */
-  private $file;
-
-  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -257,9 +252,6 @@ class JsonApiDocumentTopLevelNormalizerTest extends JsonapiKernelTestBase {
       'data' => [
         'type' => 'node_type--node_type',
         'id' => NodeType::load('article')->uuid(),
-        'meta' => [
-          'drupal_internal__' => 'article',
-        ],
       ],
       'links' => [
         'related' => ['href' => Url::fromUri('internal:/jsonapi/node/article/' . $this->node->uuid() . '/node_type', ['query' => ['resourceVersion' => 'id:' . $this->node->getRevisionId()]])->setAbsolute()->toString(TRUE)->getGeneratedUrl()],
@@ -272,16 +264,12 @@ class JsonApiDocumentTopLevelNormalizerTest extends JsonapiKernelTestBase {
       'title' => 'test title',
       'width' => 10,
       'height' => 11,
-      'drupal_internal__' => $this->file->id(),
     ], $normalized['data']['relationships']['field_image']['data']['meta']);
     $this->assertSame('node--article', $normalized['data']['type']);
     $this->assertEquals([
       'data' => [
         'type' => 'user--user',
         'id' => $this->user->uuid(),
-        'meta' => [
-          'drupal_internal__' => $this->user->id(),
-        ],
       ],
       'links' => [
         'self' => ['href' => Url::fromUri('internal:/jsonapi/node/article/' . $this->node->uuid() . '/relationships/uid', ['query' => ['resourceVersion' => 'id:' . $this->node->getRevisionId()]])->setAbsolute()->toString(TRUE)->getGeneratedUrl()],
@@ -314,7 +302,7 @@ class JsonApiDocumentTopLevelNormalizerTest extends JsonapiKernelTestBase {
    * @covers ::normalize
    */
   public function testNormalizeRelated() {
-    $this->markTestIncomplete('This fails and should be fixed by https://www.drupal.org/project/jsonapi/issues/2922121');
+    $this->markTestIncomplete('This fails and should be fixed by https://www.drupal.org/project/drupal/issues/2922121');
 
     list($request, $resource_type) = $this->generateProphecies('node', 'article', 'uid');
     $request->query = new ParameterBag([

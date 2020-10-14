@@ -60,7 +60,7 @@ class CommentTest extends ResourceTestBase {
     'field_name' => NULL,
     // @todo Uncomment this after https://www.drupal.org/project/drupal/issues/1847608 lands. Until then, it's impossible to test this.
     // 'pid' => NULL,
-    'user_id' => "The 'administer comments' permission is required.",
+    'uid' => "The 'administer comments' permission is required.",
     'entity_id' => NULL,
   ];
 
@@ -70,11 +70,6 @@ class CommentTest extends ResourceTestBase {
    * @var \Drupal\comment\CommentInterface
    */
   protected $entity;
-
-  /**
-   * @var \Drupal\entity_test\Entity\EntityTest
-   */
-  private $commented_entity;
 
   /**
    * {@inheritdoc}
@@ -111,11 +106,11 @@ class CommentTest extends ResourceTestBase {
     $this->addDefaultCommentField('entity_test', 'bar', 'comment');
 
     // Create a "Camelids" test entity that the comment will be assigned to.
-    $this->commented_entity = EntityTest::create([
-       'name' => 'Camelids',
-       'type' => 'bar',
+    $commented_entity = EntityTest::create([
+      'name' => 'Camelids',
+      'type' => 'bar',
     ]);
-    $this->commented_entity->save();
+    $commented_entity->save();
 
     // Create a "Llama" comment.
     $comment = Comment::create([
@@ -123,7 +118,7 @@ class CommentTest extends ResourceTestBase {
         'value' => 'The name "llama" was adopted by European settlers from native Peruvians.',
         'format' => 'plain_text',
       ],
-      'entity_id' => $this->commented_entity->id(),
+      'entity_id' => $commented_entity->id(),
       'entity_type' => 'entity_test',
       'field_name' => 'comment',
     ]);
@@ -178,28 +173,22 @@ class CommentTest extends ResourceTestBase {
           'status' => TRUE,
           'subject' => 'Llama',
           'thread' => '01/',
-          'drupal_internal__cid' => (int) $this->entity->id(),
+          'drupal_internal__cid' => 1,
         ],
         'relationships' => [
-          'user_id' => [
+          'uid' => [
             'data' => [
               'id' => $author->uuid(),
-              'meta' => [
-                'drupal_internal__' => (int) $author->id(),
-              ],
               'type' => 'user--user',
             ],
             'links' => [
-              'related' => ['href' => $self_url . '/user_id'],
-              'self' => ['href' => $self_url . '/relationships/user_id'],
+              'related' => ['href' => $self_url . '/uid'],
+              'self' => ['href' => $self_url . '/relationships/uid'],
             ],
           ],
           'comment_type' => [
             'data' => [
               'id' => CommentType::load('comment')->uuid(),
-              'meta' => [
-                'drupal_internal__' => 'comment',
-              ],
               'type' => 'comment_type--comment_type',
             ],
             'links' => [
@@ -209,10 +198,7 @@ class CommentTest extends ResourceTestBase {
           ],
           'entity_id' => [
             'data' => [
-              'id' => $this->commented_entity->uuid(),
-              'meta' => [
-                'drupal_internal__' => (int) $this->commented_entity->id(),
-              ],
+              'id' => EntityTest::load(1)->uuid(),
               'type' => 'entity_test--bar',
             ],
             'links' => [
@@ -252,10 +238,7 @@ class CommentTest extends ResourceTestBase {
           'entity_id' => [
             'data' => [
               'type' => 'entity_test--bar',
-              'meta' => [
-                'drupal_internal__' => (int) $this->commented_entity->id(),
-              ],
-              'id' => $this->commented_entity->uuid(),
+              'id' => EntityTest::load(1)->uuid(),
             ],
           ],
         ],
@@ -409,7 +392,7 @@ class CommentTest extends ResourceTestBase {
    * {@inheritdoc}
    */
   public function testRelated() {
-    $this->markTestSkipped('Remove this in https://www.drupal.org/project/jsonapi/issues/2940339');
+    $this->markTestSkipped('Remove this in https://www.drupal.org/project/drupal/issues/2940339');
   }
 
   /**
@@ -418,7 +401,7 @@ class CommentTest extends ResourceTestBase {
   protected static function getIncludePermissions() {
     return [
       'type' => ['administer comment types'],
-      'user_id' => ['access user profiles'],
+      'uid' => ['access user profiles'],
     ];
   }
 

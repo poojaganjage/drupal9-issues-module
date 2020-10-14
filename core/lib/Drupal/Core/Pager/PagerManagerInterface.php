@@ -7,7 +7,7 @@ namespace Drupal\Core\Pager;
  *
  * The pager.manager service manages the pager information which will eventually
  * be rendered into pager elements in the response. To gather information
- * related to pager information in the request, use the pager.manager
+ * related to pager information in the request, use the pager.parameters
  * service.
  *
  * Since there can be multiple pagers per requested page, each one is
@@ -74,8 +74,8 @@ interface PagerManagerInterface {
    *   // PagerManagerInterface::findPage(). This comes from a URL parameter, so
    *   // here we are assuming that the URL parameter corresponds to an actual
    *   // page of results that will exist within the set.
-   *   $pager_manager = \Drupal::service('pager.manager');
-   *   $page = $pager_manager->findPage();
+   *   $pager_parameters = \Drupal::service('pager.parameters');
+   *   $page = $pager_parameters->findPage();
    *   $num_per_page = \Drupal::config('mymodule.settings')->get('num_per_page');
    *   $offset = $num_per_page * $page;
    *   $result = mymodule_remote_search($keywords, $offset, $num_per_page);
@@ -119,24 +119,6 @@ interface PagerManagerInterface {
    *   The pager, or null if not found.
    */
   public function getPager($element = 0);
-
-  /**
-   * Returns the current page being requested for display within a pager.
-   *
-   * @param int $pager_id
-   *   (optional) An integer to distinguish between multiple pagers on one page.
-   *
-   * @return int
-   *   The number of the current requested page, within the pager represented by
-   *   $element. This is determined from the URL query parameter
-   *   \Drupal::request()->query->get('page'), or 0 by default. Note that this
-   *   number may differ from the actual page being displayed. For example, if a
-   *   search for "example text" brings up three pages of results, but a user
-   *   visits search/node/example+text?page=10, this function will return 10,
-   *   even though the default pager implementation adjusts for this and still
-   *   displays the third page of search results at that URL.
-   */
-  public function findPage($pager_id = 0);
 
   /**
    * Gets the URL query parameter array of a pager link.

@@ -166,7 +166,7 @@ class ViewsForm implements FormInterface, ContainerInjectionInterface {
     ];
 
     $form_object = $this->getFormObject($form_state);
-    $form = array_merge($form, $form_object->buildForm($form, $form_state, $view, $output));
+    $form += $form_object->buildForm($form, $form_state, $view, $output);
 
     return $form;
   }

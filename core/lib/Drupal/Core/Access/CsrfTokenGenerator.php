@@ -82,17 +82,12 @@ class CsrfTokenGenerator {
    *   TRUE for a valid token, FALSE for an invalid token.
    */
   public function validate($token, $value = '') {
-    if (empty($token) || !is_string($token)) {
-      @trigger_error('Passing non-string $token to ' . __METHOD__ . '() is deprecated in drupal:9.1.0 and is removed
-        from drupal:10.0.0. Refactor calling code. See https://www.drupal.org/node/3156880', E_USER_DEPRECATED);
-      return FALSE;
-    }
     $seed = $this->sessionMetadata->getCsrfTokenSeed();
     if (empty($seed)) {
       return FALSE;
     }
-    $value = $this->computeToken($seed, $value);
-    return hash_equals($value, $token);
+
+    return hash_equals($this->computeToken($seed, $value), $token);
   }
 
   /**

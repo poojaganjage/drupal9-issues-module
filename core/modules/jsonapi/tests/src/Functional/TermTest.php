@@ -154,10 +154,7 @@ class TermTest extends ResourceTestBase {
         $expected_parent_normalization = [
           'data' => [
             [
-              'id' => $this->entity->uuid(),
-              'meta' => [
-                'drupal_internal__' => (int) $this->entity->id(),
-              ],
+              'id' => Term::load(2)->uuid(),
               'type' => 'taxonomy_term--camelids',
             ],
           ],
@@ -186,10 +183,7 @@ class TermTest extends ResourceTestBase {
               ],
             ],
             [
-              'id' => $this->entity->uuid(),
-              'meta' => [
-                'drupal_internal__' => (int) $this->entity->id(),
-              ],
+              'id' => Term::load(2)->uuid(),
               'type' => 'taxonomy_term--camelids',
             ],
           ],
@@ -204,17 +198,11 @@ class TermTest extends ResourceTestBase {
         $expected_parent_normalization = [
           'data' => [
             [
-              'id' => $this->entity->uuid(),
-              'meta' => [
-                'drupal_internal__' => (int) $this->entity->id(),
-              ],
+              'id' => Term::load(3)->uuid(),
               'type' => 'taxonomy_term--camelids',
             ],
             [
-              'id' => $this->entity->uuid(),
-              'meta' => [
-                'drupal_internal__' => (int) $this->entity->id(),
-              ],
+              'id' => Term::load(2)->uuid(),
               'type' => 'taxonomy_term--camelids',
             ],
           ],
@@ -273,9 +261,6 @@ class TermTest extends ResourceTestBase {
           'vid' => [
             'data' => [
               'id' => Vocabulary::load('camelids')->uuid(),
-              'meta' => [
-                'drupal_internal__' => 'camelids',
-              ],
               'type' => 'taxonomy_vocabulary--taxonomy_vocabulary',
             ],
             'links' => [
@@ -387,7 +372,7 @@ class TermTest extends ResourceTestBase {
     $this->setUpAuthorization('PATCH');
     $this->config('jsonapi.settings')->set('read_only', FALSE)->save(TRUE);
 
-    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/jsonapi/issues/2878463.
+    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/drupal/issues/2878463.
     $url = Url::fromRoute(sprintf('jsonapi.%s.individual', static::$resourceTypeName), ['entity' => $this->entity->uuid()]);
     // $url = $this->entity->toUrl('jsonapi');
     $request_options = [];
@@ -453,7 +438,7 @@ class TermTest extends ResourceTestBase {
     // Modify the entity under test to use the provided parent terms.
     $this->entity->set('parent', $parent_term_ids)->save();
 
-    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/jsonapi/issues/2878463.
+    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/drupal/issues/2878463.
     $url = Url::fromRoute(sprintf('jsonapi.%s.individual', static::$resourceTypeName), ['entity' => $this->entity->uuid()]);
     // $url = $this->entity->toUrl('jsonapi');
     $request_options = [];
@@ -488,7 +473,7 @@ class TermTest extends ResourceTestBase {
    * {@inheritdoc}
    */
   public function testRelated() {
-    $this->markTestSkipped('Remove this in https://www.drupal.org/project/jsonapi/issues/2940339');
+    $this->markTestSkipped('Remove this in https://www.drupal.org/project/drupal/issues/2940339');
   }
 
   /**

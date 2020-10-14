@@ -1,13 +1,8 @@
 name: Path
 type: module
-description: Allows users to rename URLs.
+description: 'Allows users to rename URLs.'
 package: Core
-# version: VERSION
+version: VERSION
 configure: entity.path_alias.collection
 dependencies:
   - drupal:path_alias
-
-# Information added by Drupal.org packaging script on 2020-07-08
-version: '9.0.2'
-project: 'drupal'
-datestamp: 1594237482

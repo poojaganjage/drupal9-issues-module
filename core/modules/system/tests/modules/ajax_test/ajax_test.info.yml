@@ -1,12 +1,7 @@
-name: AJAX Test
+name: 'AJAX Test'
 type: module
-description: Support module for AJAX framework tests.
+description: 'Support module for AJAX framework tests.'
 package: Testing
-# version: VERSION
+version: VERSION
 dependencies:
   - drupal:contact
-
-# Information added by Drupal.org packaging script on 2020-07-08
-version: '9.0.2'
-project: 'drupal'
-datestamp: 1594237482

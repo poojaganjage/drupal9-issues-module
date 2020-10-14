@@ -1,10 +1,5 @@
-name: Layout Discovery
+name: 'Layout Discovery'
 type: module
-description: Provides a way for modules or themes to register layouts.
+description: 'Provides a way for modules or themes to register layouts.'
 package: Core
-# version: VERSION
-
-# Information added by Drupal.org packaging script on 2020-07-08
-version: '9.0.2'
-project: 'drupal'
-datestamp: 1594237482
+version: VERSION

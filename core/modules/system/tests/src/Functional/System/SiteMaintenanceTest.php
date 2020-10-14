@@ -73,7 +73,7 @@ class SiteMaintenanceTest extends BrowserTestBase {
 
     $admin_message = t('Operating in maintenance mode. <a href=":url">Go online.</a>', [':url' => Url::fromRoute('system.site_maintenance_mode')->toString()]);
     $user_message = t('Operating in maintenance mode.');
-    $offline_message = $this->config('system.site')->get('name') . ' is currently under maintenance. We should be back shortly. Thank you for your patience.';
+    $offline_message = t('@site is currently under maintenance. We should be back shortly. Thank you for your patience.', ['@site' => $this->config('system.site')->get('name')]);
 
     $this->drupalGet(Url::fromRoute('user.page'));
     // JS should not be aggregated, so drupal.js is expected in the page source.
@@ -161,7 +161,6 @@ class SiteMaintenanceTest extends BrowserTestBase {
     \Drupal::state()->set('system.maintenance_mode', TRUE);
     $formats = ['json', 'xml', 'non-existing'];
     foreach ($formats as $format) {
-      $this->pass('Testing format ' . $format);
       $this->drupalGet('<front>', ['query' => ['_format' => $format]]);
       $this->assertSession()->statusCodeEquals(503);
       $this->assertRaw('Drupal is currently under maintenance. We should be back shortly. Thank you for your patience.');

@@ -132,9 +132,6 @@ class BlockContentTest extends ResourceTestBase {
           'block_content_type' => [
             'data' => [
               'id' => BlockContentType::load('basic')->uuid(),
-              'meta' => [
-                'drupal_internal__' => 'basic',
-              ],
               'type' => 'block_content_type--block_content_type',
             ],
             'links' => [
@@ -203,7 +200,7 @@ class BlockContentTest extends ResourceTestBase {
    * {@inheritdoc}
    */
   public function testRelated() {
-    $this->markTestSkipped('Remove this in https://www.drupal.org/project/jsonapi/issues/2940339');
+    $this->markTestSkipped('Remove this in https://www.drupal.org/project/drupal/issues/2940339');
   }
 
   /**

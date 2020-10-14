@@ -1,13 +1,8 @@
-name: User test views
+name: 'User test views'
 type: module
-description: Provides default views for views user tests.
+description: 'Provides default views for views user tests.'
 package: Testing
-# version: VERSION
+version: VERSION
 dependencies:
   - drupal:user
   - drupal:views
-
-# Information added by Drupal.org packaging script on 2020-07-08
-version: '9.0.2'
-project: 'drupal'
-datestamp: 1594237482

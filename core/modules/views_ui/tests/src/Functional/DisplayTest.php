@@ -21,7 +21,7 @@ class DisplayTest extends UITestBase {
   public static $testViews = ['test_display'];
 
   /**
-   * Modules to enable.
+   * Modules to enable
    *
    * @var array
    */
@@ -36,6 +36,7 @@ class DisplayTest extends UITestBase {
    * Tests adding a display.
    */
   public function testAddDisplay() {
+    $view = $this->randomView();
     $this->assertNoText('Block');
     $this->assertNoText('Block 2');
 
@@ -152,7 +153,7 @@ class DisplayTest extends UITestBase {
     $path = 'admin/structure/views/view/test_display/edit/block_1';
     $link_display_path = 'admin/structure/views/nojs/display/test_display/block_1/link_display';
 
-    // Test the link text displays 'None' and not 'Block 1'.
+    // Test the link text displays 'None' and not 'Block 1'
     $this->drupalGet($path);
     $result = $this->xpath("//a[contains(@href, :path)]", [':path' => $link_display_path]);
     $this->assertEqual($result[0]->getHtml(), t('None'), 'Make sure that the link option summary shows "None" by default.');
@@ -174,7 +175,7 @@ class DisplayTest extends UITestBase {
 
     $this->assertSession()->linkExists(t('Custom URL'), 0, 'The link option has custom URL as summary.');
 
-    // Test the default link_url value for new display.
+    // Test the default link_url value for new display
     $this->drupalPostForm(NULL, [], t('Add Block'));
     $this->assertUrl('admin/structure/views/view/test_display/edit/block_2');
     $this->clickLink(t('Custom URL'));

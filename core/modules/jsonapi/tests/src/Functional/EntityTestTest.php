@@ -131,9 +131,6 @@ class EntityTestTest extends ResourceTestBase {
           'user_id' => [
             'data' => [
               'id' => $author->uuid(),
-              'meta' => [
-                'drupal_internal__' => (int) $author->id(),
-              ],
               'type' => 'user--user',
             ],
             'links' => [

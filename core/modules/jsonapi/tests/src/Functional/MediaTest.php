@@ -198,7 +198,6 @@ class MediaTest extends ResourceTestBase {
               'meta' => [
                 'description' => NULL,
                 'display' => NULL,
-                'drupal_internal__' => (int) $file->id(),
               ],
               'type' => 'file--file',
             ],
@@ -216,7 +215,6 @@ class MediaTest extends ResourceTestBase {
               'id' => $thumbnail->uuid(),
               'meta' => [
                 'alt' => '',
-                'drupal_internal__' => (int) $thumbnail->id(),
                 'width' => 180,
                 'height' => 180,
                 'title' => NULL,
@@ -235,9 +233,6 @@ class MediaTest extends ResourceTestBase {
           'bundle' => [
             'data' => [
               'id' => MediaType::load('camelids')->uuid(),
-              'meta' => [
-                'drupal_internal__' => 'camelids',
-              ],
               'type' => 'media_type--media_type',
             ],
             'links' => [
@@ -253,9 +248,6 @@ class MediaTest extends ResourceTestBase {
             'data' => [
               'id' => $author->uuid(),
               'type' => 'user--user',
-              'meta' => [
-                'drupal_internal__' => (int) $author->id(),
-              ],
             ],
             'links' => [
               'related' => [
@@ -269,9 +261,6 @@ class MediaTest extends ResourceTestBase {
           'revision_user' => [
             'data' => [
               'id' => $author->uuid(),
-              'meta' => [
-                'drupal_internal__' => (int) $author->id(),
-              ],
               'type' => 'user--user',
             ],
             'links' => [
@@ -306,7 +295,6 @@ class MediaTest extends ResourceTestBase {
               'meta' => [
                 'description' => 'This file is better!',
                 'display' => NULL,
-                'drupal_internal__' => (int) $file->id(),
               ],
               'type' => 'file--file',
             ],
@@ -360,7 +348,7 @@ class MediaTest extends ResourceTestBase {
    */
   public function testPostIndividual() {
     // @todo Mimic \Drupal\Tests\rest\Functional\EntityResource\Media\MediaResourceTestBase::testPost()
-    // @todo Later, use https://www.drupal.org/project/jsonapi/issues/2958554 to upload files rather than the REST module.
+    // @todo Later, use https://www.drupal.org/project/drupal/issues/2958554 to upload files rather than the REST module.
     parent::testPostIndividual();
   }
   // @codingStandardsIgnoreEnd
@@ -377,14 +365,14 @@ class MediaTest extends ResourceTestBase {
           'width' => 180,
           'height' => 180,
           'title' => NULL,
-        ] + $data['meta'];
+        ];
         return $data;
 
       case 'field_media_file':
         $data['meta'] = [
           'description' => NULL,
           'display' => NULL,
-        ] + $data['meta'];
+        ];
         return $data;
 
       default:

@@ -6,7 +6,6 @@ use Drupal\Core\Site\Settings;
 use Drupal\Tests\UnitTestCase;
 use Drupal\Core\Access\CsrfTokenGenerator;
 use Drupal\Component\Utility\Crypt;
-use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 
 /**
  * Tests the CsrfTokenGenerator class.
@@ -15,8 +14,6 @@ use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
  * @coversDefaultClass \Drupal\Core\Access\CsrfTokenGenerator
  */
 class CsrfTokenGeneratorTest extends UnitTestCase {
-
-  use ExpectDeprecationTrait;
 
   /**
    * The CSRF token generator.
@@ -176,15 +173,12 @@ class CsrfTokenGeneratorTest extends UnitTestCase {
    *
    * @covers ::validate
    * @dataProvider providerTestInvalidParameterTypes
-   *
-   * @group legacy
    */
   public function testInvalidParameterTypes($token, $value = '') {
     $this->setupDefaultExpectations();
-    $this->throwException(new \InvalidArgumentException);
-    $this->expectDeprecation('Passing non-string $token to Drupal\Core\Access\CsrfTokenGenerator::validate() is deprecated
-      in drupal:9.1.0 and is removed from drupal:10.0.0. Refactor calling code. See https://www.drupal.org/node/3156880');
-    $this->assertFalse($this->generator->validate($token, $value));
+
+    $this->expectException(\InvalidArgumentException::class);
+    $this->generator->validate($token, $value);
   }
 
   /**

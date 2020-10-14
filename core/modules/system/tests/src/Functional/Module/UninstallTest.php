@@ -86,7 +86,7 @@ class UninstallTest extends BrowserTestBase {
     $edit = [];
     $edit['uninstall[module_test]'] = TRUE;
     $this->drupalPostForm('admin/modules/uninstall', $edit, t('Uninstall'));
-    $this->assertNoText('Configuration deletions');
+    $this->assertNoText(\Drupal::translation()->translate('Configuration deletions'), 'No configuration deletions listed on the module install confirmation page.');
     $this->assertText(\Drupal::translation()->translate('Configuration updates'), 'Configuration updates listed on the module install confirmation page.');
     $this->assertText($node_type->label());
     $this->drupalPostForm(NULL, NULL, t('Uninstall'));
@@ -99,7 +99,7 @@ class UninstallTest extends BrowserTestBase {
     $edit['uninstall[node]'] = TRUE;
     $this->drupalPostForm('admin/modules/uninstall', $edit, t('Uninstall'));
     $this->assertText(\Drupal::translation()->translate('Configuration deletions'), 'Configuration deletions listed on the module install confirmation page.');
-    $this->assertNoText('Configuration updates');
+    $this->assertNoText(\Drupal::translation()->translate('Configuration updates'), 'No configuration updates listed on the module install confirmation page.');
 
     $entity_types = [];
     foreach ($node_dependencies as $entity) {
@@ -157,7 +157,7 @@ class UninstallTest extends BrowserTestBase {
       $this->fail($message);
     }
     catch (EntityMalformedException $e) {
-      $this->pass($message);
+      // Expected exception; just continue testing.
     }
 
     // Even though the module failed to install properly, its configuration

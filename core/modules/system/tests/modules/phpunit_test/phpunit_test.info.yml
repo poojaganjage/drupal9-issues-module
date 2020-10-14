@@ -1,10 +1,5 @@
 name: PHPUnit Test
 type: module
-description: Provides dummy classes for use by SimpleTest tests.
+description: 'Provides dummy classes for use by SimpleTest tests.'
 package: Testing
-# version: VERSION
-
-# Information added by Drupal.org packaging script on 2020-07-08
-version: '9.0.2'
-project: 'drupal'
-datestamp: 1594237482
+version: VERSION

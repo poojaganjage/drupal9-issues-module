@@ -7,8 +7,6 @@ use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\language\Plugin\LanguageNegotiation\LanguageNegotiationUrl;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Tests\BrowserTestBase;
-use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
  * Tests multilingual support for fields.
@@ -49,17 +47,15 @@ class NodeFieldMultilingualTest extends BrowserTestBase {
     ConfigurableLanguage::createFromLangcode('it')->save();
 
     // Enable URL language detection and selection.
-    $config = $this->config('language.negotiation');
-    $config->set('url.prefixes', [
-      'en' => 'en',
-      'de' => 'de',
-    ])->save();
+    $edit = ['language_interface[enabled][language-url]' => '1'];
+    $this->drupalPostForm('admin/config/regional/language/detection', $edit, t('Save settings'));
 
     // Set "Basic page" content type to use multilingual support.
-    $entity_type = $this->container->get('entity_type.manager')->getStorage('language_content_settings')->create([
-      'target_entity_type_id' => $entity_type,
-      'target_bundle' => $bundle,
-    ])->save();
+    $edit = [
+      'language_configuration[language_alterable]' => TRUE,
+    ];
+    $this->drupalPostForm('admin/structure/types/manage/page', $edit, t('Save content type'));
+    $this->assertRaw(t('The content type %type has been updated.', ['%type' => 'Basic page']), 'Basic page content type has been updated.');
 
     // Make node body translatable.
     $field_storage = FieldStorageConfig::loadByName('node', 'body');

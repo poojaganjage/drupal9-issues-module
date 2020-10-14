@@ -1,10 +1,5 @@
-name: Node module tests
+name: 'Node module tests'
 type: module
-description: Support module for node related testing.
+description: 'Support module for node related testing.'
 package: Testing
-# version: VERSION
-
-# Information added by Drupal.org packaging script on 2020-07-08
-version: '9.0.2'
-project: 'drupal'
-datestamp: 1594237482
+version: VERSION
