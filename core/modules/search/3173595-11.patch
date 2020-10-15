@@ -1,0 +1,13 @@
+diff --git a/core/modules/search/tests/src/Functional/SearchBlockTest.php b/core/modules/search/tests/src/Functional/SearchBlockTest.php
+index 1dc6a7b9..add41cf8 100644
+--- a/core/modules/search/tests/src/Functional/SearchBlockTest.php
++++ b/core/modules/search/tests/src/Functional/SearchBlockTest.php
+@@ -132,7 +132,6 @@ public function testSearchFormBlock() {
+         'settings[page_id]' => 'user_search',
+       ], 'Save block');
+     $name = $this->adminUser->getAccountName();
+-    $email = $this->adminUser->getEmail();
+     $this->drupalPostForm('node', ['keys' => $name], t('Search'));
+     $this->assertSession()->linkExists($name);
+   }
+
