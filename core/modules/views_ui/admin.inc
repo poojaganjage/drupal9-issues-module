@@ -141,7 +141,7 @@ function views_ui_add_limited_validation($element, FormStateInterface $form_stat
   // $form_state as we did to the element itself, to ensure that
   // #limit_validation_errors will actually be set in the correct place.
   $clicked_button = &$form_state->getTriggeringElement();
-  if ($clicked_button && $clicked_button['#name'] == $element['#name'] && $clicked_button['#value'] == $element['#value']) {
+  if ($clicked_button && $clicked_button['#name'] === $element['#name'] && $clicked_button['#value'] === $element['#value']) {
     $clicked_button['#limit_validation_errors'] = $element['#limit_validation_errors'];
   }
 

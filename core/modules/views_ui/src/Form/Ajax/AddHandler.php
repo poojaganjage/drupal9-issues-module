@@ -179,7 +179,7 @@ class AddHandler extends ViewsFormBase {
 
     // Remove the default submit function.
     $form['actions']['submit']['#submit'] = array_filter($form['actions']['submit']['#submit'], function ($var) {
-      return !(is_array($var) && isset($var[1]) && $var[1] == 'standardSubmit');
+      return !(is_array($var) && isset($var[1]) && $var[1] === 'standardSubmit');
     });
     $form['actions']['submit']['#submit'][] = [$view, 'submitItemAdd'];
 

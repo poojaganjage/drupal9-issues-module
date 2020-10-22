@@ -806,7 +806,7 @@ class ViewUI implements ViewEntityInterface {
       '#rows' => array_merge($rows['query'], $rows['statistics']),
     ];
 
-    if ($show_location == 'above') {
+    if ($show_location === 'above') {
       $output = [
         'table' => $table,
         'preview' => $preview,
@@ -821,7 +821,7 @@ class ViewUI implements ViewEntityInterface {
 
     // Ensure that we just remove an additional request we pushed earlier.
     // This could happen if $errors was not empty.
-    if ($request_stack->getCurrentRequest() != $current_request) {
+    if ($request_stack->getCurrentRequest() !== $current_request) {
       $request_stack->pop();
     }
     return $output;
@@ -890,7 +890,7 @@ class ViewUI implements ViewEntityInterface {
    */
   public function isLocked() {
     $lock = $this->getLock();
-    return $lock && $lock->getOwnerId() != \Drupal::currentUser()->id();
+    return $lock && $lock->getOwnerId() !== \Drupal::currentUser()->id();
   }
 
   /**

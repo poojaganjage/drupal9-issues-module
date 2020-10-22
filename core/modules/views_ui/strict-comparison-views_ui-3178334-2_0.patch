@@ -1,0 +1,268 @@
+diff --git a/core/modules/views_ui/admin.inc b/core/modules/views_ui/admin.inc
+index a37ea0e11c..aa9b56df73 100644
+--- a/core/modules/views_ui/admin.inc
++++ b/core/modules/views_ui/admin.inc
+@@ -141,7 +141,7 @@ function views_ui_add_limited_validation($element, FormStateInterface $form_stat
+   // $form_state as we did to the element itself, to ensure that
+   // #limit_validation_errors will actually be set in the correct place.
+   $clicked_button = &$form_state->getTriggeringElement();
+-  if ($clicked_button && $clicked_button['#name'] == $element['#name'] && $clicked_button['#value'] == $element['#value']) {
++  if ($clicked_button && $clicked_button['#name'] === $element['#name'] && $clicked_button['#value'] === $element['#value']) {
+     $clicked_button['#limit_validation_errors'] = $element['#limit_validation_errors'];
+   }
+ 
+diff --git a/core/modules/views_ui/src/Form/Ajax/AddHandler.php b/core/modules/views_ui/src/Form/Ajax/AddHandler.php
+index 8b53772e8c..ebb8ade621 100644
+--- a/core/modules/views_ui/src/Form/Ajax/AddHandler.php
++++ b/core/modules/views_ui/src/Form/Ajax/AddHandler.php
+@@ -179,7 +179,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
+ 
+     // Remove the default submit function.
+     $form['actions']['submit']['#submit'] = array_filter($form['actions']['submit']['#submit'], function ($var) {
+-      return !(is_array($var) && isset($var[1]) && $var[1] == 'standardSubmit');
++      return !(is_array($var) && isset($var[1]) && $var[1] === 'standardSubmit');
+     });
+     $form['actions']['submit']['#submit'][] = [$view, 'submitItemAdd'];
+ 
+diff --git a/core/modules/views_ui/src/Form/Ajax/ConfigHandler.php b/core/modules/views_ui/src/Form/Ajax/ConfigHandler.php
+index 5d68f0bd50..7fb315d5ed 100644
+--- a/core/modules/views_ui/src/Form/Ajax/ConfigHandler.php
++++ b/core/modules/views_ui/src/Form/Ajax/ConfigHandler.php
+@@ -95,7 +95,7 @@ public function buildForm(array $form, FormStateInterface $form_state, Request $
+         foreach ($relationships as $relationship) {
+           // relationships can't link back to self. But also, due to ordering,
+           // relationships can only link to prior relationships.
+-          if ($type == 'relationship' && $id == $relationship['id']) {
++          if ($type === 'relationship' && $id === $relationship['id']) {
+             break;
+           }
+           $relationship_handler = Views::handlerManager('relationship')->getHandler($relationship);
+diff --git a/core/modules/views_ui/src/Form/Ajax/RearrangeFilter.php b/core/modules/views_ui/src/Form/Ajax/RearrangeFilter.php
+index 6e2114e319..15a3ce46da 100644
+--- a/core/modules/views_ui/src/Form/Ajax/RearrangeFilter.php
++++ b/core/modules/views_ui/src/Form/Ajax/RearrangeFilter.php
+@@ -135,7 +135,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
+           '#ajax' => ['url' => NULL],
+         ];
+       }
+-      $group_options[$id] = $id == 1 ? $this->t('Default group') : $this->t('Group @group', ['@group' => $id]);
++      $group_options[$id] = $id === 1 ? $this->t('Default group') : $this->t('Group @group', ['@group' => $id]);
+       $form['#group_renders'][$id] = [];
+     }
+ 
+@@ -158,7 +158,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
+       // If not grouping and the handler is set ungroupable, move it back to
+       // the default group to prevent weird errors from having it be in its
+       // own group:
+-      if (!$grouping && $field['group'] == 'ungroupable') {
++      if (!$grouping && $field['group'] === 'ungroupable') {
+         $field['group'] = 1;
+       }
+ 
+@@ -270,7 +270,7 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
+     // either adding or removing a group, not actually updating the filters.
+     $triggering_element = $form_state->getTriggeringElement();
+     if (!empty($triggering_element['#group'])) {
+-      if ($triggering_element['#group'] == 'add') {
++      if ($triggering_element['#group'] === 'add') {
+         // Add a new group
+         $groups['groups'][] = 'AND';
+       }
+diff --git a/core/modules/views_ui/src/ViewEditForm.php b/core/modules/views_ui/src/ViewEditForm.php
+index c4a5a94b33..66f7e26ee3 100644
+--- a/core/modules/views_ui/src/ViewEditForm.php
++++ b/core/modules/views_ui/src/ViewEditForm.php
+@@ -326,7 +326,7 @@ public function save(array $form, FormStateInterface $form_state) {
+           continue;
+         }
+ 
+-        if (($display->getPluginId() == 'page') && ($old_path == $destination) && ($old_path != $view->getExecutable()->displayHandlers->get($id)->getOption('path'))) {
++        if (($display->getPluginId() === 'page') && ($old_path === $destination) && ($old_path !== $view->getExecutable()->displayHandlers->get($id)->getOption('path'))) {
+           $destination = $view->getExecutable()->displayHandlers->get($id)->getOption('path');
+           $query->remove('destination');
+         }
+@@ -405,7 +405,7 @@ public function getDisplayDetails($view, $display) {
+ 
+     $is_display_deleted = !empty($display['deleted']);
+     // The master display cannot be duplicated.
+-    $is_default = $display['id'] == 'default';
++    $is_default = $display['id'] === 'default';
+     // @todo: Figure out why getOption doesn't work here.
+     $is_enabled = $view->getExecutable()->displayHandlers->get($display['id'])->isEnabled();
+ 
+@@ -488,7 +488,7 @@ public function getDisplayDetails($view, $display) {
+         ];
+ 
+         foreach (Views::fetchPluginNames('display', NULL, [$view->get('storage')->get('base_table')]) as $type => $label) {
+-          if ($type == $display['display_plugin']) {
++          if ($type === $display['display_plugin']) {
+             continue;
+           }
+ 
+@@ -757,8 +757,8 @@ public function renderDisplayTop(ViewUI $view) {
+     // Let other modules add additional links here.
+     \Drupal::moduleHandler()->alter('views_ui_display_top_links', $element['extra_actions']['#links'], $view, $display_id);
+ 
+-    if (isset($view->type) && $view->type != $this->t('Default')) {
+-      if ($view->type == $this->t('Overridden')) {
++    if (isset($view->type) && $view->type !== $this->t('Default')) {
++      if ($view->type === $this->t('Overridden')) {
+         $element['extra_actions']['#links']['revert'] = [
+           'title' => $this->t('Revert view'),
+           'href' => "admin/structure/views/view/{$view->id()}/revert",
+@@ -1037,7 +1037,7 @@ public function getFormBucket(ViewUI $view, $type, $display) {
+     ];
+     if ($count_handlers > 0) {
+       // Create the rearrange text variable for the rearrange action.
+-      $rearrange_text = $type == 'filter' ? $this->t('And/Or Rearrange <span class="visually-hidden">filter criteria</span>') : $this->t('Rearrange <span class="visually-hidden">@type</span>', ['@type' => $types[$type]['ltitle']]);
++      $rearrange_text = $type === 'filter' ? $this->t('And/Or Rearrange <span class="visually-hidden">filter criteria</span>') : $this->t('Rearrange <span class="visually-hidden">@type</span>', ['@type' => $types[$type]['ltitle']]);
+ 
+       $actions['rearrange'] = [
+         'title' => $rearrange_text,
+@@ -1076,12 +1076,12 @@ public function getFormBucket(ViewUI $view, $type, $display) {
+     // Filters can now be grouped so we do a little bit extra:
+     $groups = [];
+     $grouping = FALSE;
+-    if ($type == 'filter') {
++    if ($type === 'filter') {
+       $group_info = $executable->display_handler->getOption('filter_groups');
+       // If there is only one group but it is using the "OR" filter, we still
+       // treat it as a group for display purposes, since we want to display the
+       // "OR" label next to items within the group.
+-      if (!empty($group_info['groups']) && (count($group_info['groups']) > 1 || current($group_info['groups']) == 'OR')) {
++      if (!empty($group_info['groups']) && (count($group_info['groups']) > 1 || current($group_info['groups']) === 'OR')) {
+         $grouping = TRUE;
+         $groups = [0 => []];
+       }
+@@ -1162,7 +1162,7 @@ public function getFormBucket(ViewUI $view, $type, $display) {
+     }
+ 
+     // If using grouping, re-order fields so that they show up properly in the list.
+-    if ($type == 'filter' && $grouping) {
++    if ($type === 'filter' && $grouping) {
+       $store = $build['fields'];
+       $build['fields'] = [];
+       foreach ($groups as $gid => $contents) {
+@@ -1171,7 +1171,7 @@ public function getFormBucket(ViewUI $view, $type, $display) {
+           $build['fields'][] = [
+             '#theme' => 'views_ui_display_tab_setting',
+             '#class' => ['views-group-text'],
+-            '#link' => ($group_info['operator'] == 'OR' ? $this->t('OR') : $this->t('AND')),
++            '#link' => ($group_info['operator'] === 'OR' ? $this->t('OR') : $this->t('AND')),
+           ];
+         }
+         // Display an operator between each pair of filters within the group.
+@@ -1179,7 +1179,7 @@ public function getFormBucket(ViewUI $view, $type, $display) {
+         $last = end($keys);
+         foreach ($contents as $key => $pid) {
+           if ($key != $last) {
+-            $operator = $group_info['groups'][$gid] == 'OR' ? $this->t('OR') : $this->t('AND');
++            $operator = $group_info['groups'][$gid] === 'OR' ? $this->t('OR') : $this->t('AND');
+             $store[$pid]['#link'] = new FormattableMarkup('@link <span>@operator</span>', ['@link' => $store[$pid]['#link'], '@operator' => $operator]);
+           }
+           $build['fields'][$pid] = $store[$pid];
+diff --git a/core/modules/views_ui/src/ViewFormBase.php b/core/modules/views_ui/src/ViewFormBase.php
+index 0b045b519e..f500db53a9 100644
+--- a/core/modules/views_ui/src/ViewFormBase.php
++++ b/core/modules/views_ui/src/ViewFormBase.php
+@@ -144,7 +144,7 @@ public function isDefaultDisplayShown(ViewUI $view) {
+     $advanced_mode = \Drupal::config('views.settings')->get('ui.show.master_display');
+     // For other users, show the default display only if there are no others, and
+     // hide it if there's at least one "real" display.
+-    $additional_displays = (count($view->getExecutable()->displayHandlers) == 1);
++    $additional_displays = (count($view->getExecutable()->displayHandlers) === 1);
+ 
+     return $advanced_mode || $additional_displays;
+   }
+@@ -156,7 +156,7 @@ public function isDefaultDisplayShown(ViewUI $view) {
+    */
+   public function getDisplayLabel(ViewUI $view, $display_id, $check_changed = TRUE) {
+     $display = $view->get('display');
+-    $title = $display_id == 'default' ? $this->t('Master') : $display[$display_id]['display_title'];
++    $title = $display_id === 'default' ? $this->t('Master') : $display[$display_id]['display_title'];
+     $title = views_ui_truncate($title, 25);
+ 
+     if ($check_changed && !empty($view->changed_display[$display_id])) {
+diff --git a/core/modules/views_ui/src/ViewUI.php b/core/modules/views_ui/src/ViewUI.php
+index d1d7387abe..230c955ad6 100644
+--- a/core/modules/views_ui/src/ViewUI.php
++++ b/core/modules/views_ui/src/ViewUI.php
+@@ -806,7 +806,7 @@ public function renderPreview($display_id, $args = []) {
+       '#rows' => array_merge($rows['query'], $rows['statistics']),
+     ];
+ 
+-    if ($show_location == 'above') {
++    if ($show_location === 'above') {
+       $output = [
+         'table' => $table,
+         'preview' => $preview,
+diff --git a/core/modules/views_ui/tests/src/Functional/HandlerTest.php b/core/modules/views_ui/tests/src/Functional/HandlerTest.php
+index 0f00b7dde3..809c02ed52 100644
+--- a/core/modules/views_ui/tests/src/Functional/HandlerTest.php
++++ b/core/modules/views_ui/tests/src/Functional/HandlerTest.php
+@@ -107,7 +107,7 @@ public function testUICRUD() {
+         $id = 'area';
+         $edit_handler_url = "admin/structure/views/nojs/handler/test_view_empty/default/$type/$id";
+       }
+-      elseif ($type == 'relationship') {
++      elseif ($type === 'relationship') {
+         $this->drupalPostForm($add_handler_url, ['name[views_test_data.uid]' => TRUE], t('Add and configure @handler', ['@handler' => $type_info['ltitle']]));
+         $id = 'uid';
+         $edit_handler_url = "admin/structure/views/nojs/handler/test_view_empty/default/$type/$id";
+diff --git a/core/modules/views_ui/tests/src/Functional/ViewEditTest.php b/core/modules/views_ui/tests/src/Functional/ViewEditTest.php
+index e6c4440f17..15a8bd3be0 100644
+--- a/core/modules/views_ui/tests/src/Functional/ViewEditTest.php
++++ b/core/modules/views_ui/tests/src/Functional/ViewEditTest.php
+@@ -151,7 +151,7 @@ public function testEditFormLanguageOptions() {
+       $this->drupalGet('admin/structure/views/view/' . $view_name);
+       $this->assertSession()->statusCodeEquals(200);
+       $langcode_url = 'admin/structure/views/nojs/display/' . $view_name . '/' . $display . '/rendering_language';
+-      if ($view_name == 'test_view') {
++      if ($view_name === 'test_view') {
+         $this->assertSession()->linkByHrefNotExists($langcode_url);
+         $assert_session->linkNotExistsExact('Content language selected for page');
+         $this->assertSession()->linkNotExists('Content language of view row');
+@@ -164,7 +164,7 @@ public function testEditFormLanguageOptions() {
+ 
+       $this->drupalGet($langcode_url);
+       $this->assertSession()->statusCodeEquals(200);
+-      if ($view_name == 'test_view') {
++      if ($view_name === 'test_view') {
+         $this->assertText(t('The view is not based on a translatable entity type or the site is not multilingual.'));
+       }
+       else {
+diff --git a/core/modules/views_ui/tests/src/Unit/ViewUIObjectTest.php b/core/modules/views_ui/tests/src/Unit/ViewUIObjectTest.php
+index c45c85a1dc..7800e1bd55 100644
+--- a/core/modules/views_ui/tests/src/Unit/ViewUIObjectTest.php
++++ b/core/modules/views_ui/tests/src/Unit/ViewUIObjectTest.php
+@@ -38,7 +38,7 @@ public function testEntityDecoration() {
+       // ConfigEntityInterface::calculateDependencies() are only used for
+       // dependency management.
+       if (!in_array($reflection_method->getName(), ['isNew', 'isSyncing', 'isUninstalling', 'getConfigDependencyKey', 'getConfigDependencyName', 'calculateDependencies'])) {
+-        if (count($reflection_method->getParameters()) == 0) {
++        if (count($reflection_method->getParameters()) === 0) {
+           $method_args[$reflection_method->getName()] = [];
+         }
+       }
+diff --git a/core/modules/views_ui/views_ui.theme.inc b/core/modules/views_ui/views_ui.theme.inc
+index 153d3d3544..eb20ad108e 100644
+--- a/core/modules/views_ui/views_ui.theme.inc
++++ b/core/modules/views_ui/views_ui.theme.inc
+@@ -124,7 +124,7 @@ function template_preprocess_views_ui_build_group_filter_form(&$variables) {
+     ['data' => $form['default_group']['All']],
+     '',
+     [
+-      'data' => \Drupal::config('views.settings')->get('ui.exposed_filter_any_label') == 'old_any' ? t('&lt;Any&gt;') : t('- Any -'),
++      'data' => \Drupal::config('views.settings')->get('ui.exposed_filter_any_label') === 'old_any' ? t('&lt;Any&gt;') : t('- Any -'),
+       'colspan' => 4,
+       'class' => ['class' => 'any-default-radios-row'],
+     ],
+@@ -252,7 +252,7 @@ function template_preprocess_views_ui_rearrange_filter_form(&$variables) {
+       // When JavaScript is enabled, the button for removing the group (if it's
+       // present) should be hidden, since it will be replaced by a link on the
+       // client side.
+-      if (!empty($form['remove_groups'][$group_id]['#type']) && $form['remove_groups'][$group_id]['#type'] == 'submit') {
++      if (!empty($form['remove_groups'][$group_id]['#type']) && $form['remove_groups'][$group_id]['#type'] === 'submit') {
+         $form['remove_groups'][$group_id]['#attributes']['class'][] = 'js-hide';
+       }
+       $row[] = [

@@ -117,7 +117,7 @@ abstract class ViewFormBase extends EntityForm {
     }
 
     // If the default display isn't supposed to be shown, don't display its tab, unless it's the only display.
-    if ((!$this->isDefaultDisplayShown($view) && $display_id != 'default') && count($tabs) > 1) {
+    if ((!$this->isDefaultDisplayShown($view) && $display_id !== 'default') && count($tabs) > 1) {
       $tabs['default']['#access'] = FALSE;
     }
 
@@ -144,7 +144,7 @@ abstract class ViewFormBase extends EntityForm {
     $advanced_mode = \Drupal::config('views.settings')->get('ui.show.master_display');
     // For other users, show the default display only if there are no others, and
     // hide it if there's at least one "real" display.
-    $additional_displays = (count($view->getExecutable()->displayHandlers) == 1);
+    $additional_displays = (count($view->getExecutable()->displayHandlers) === 1);
 
     return $advanced_mode || $additional_displays;
   }
@@ -156,7 +156,7 @@ abstract class ViewFormBase extends EntityForm {
    */
   public function getDisplayLabel(ViewUI $view, $display_id, $check_changed = TRUE) {
     $display = $view->get('display');
-    $title = $display_id == 'default' ? $this->t('Master') : $display[$display_id]['display_title'];
+    $title = $display_id === 'default' ? $this->t('Master') : $display[$display_id]['display_title'];
     $title = views_ui_truncate($title, 25);
 
     if ($check_changed && !empty($view->changed_display[$display_id])) {

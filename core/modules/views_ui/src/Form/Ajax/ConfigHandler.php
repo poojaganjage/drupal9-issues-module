@@ -95,7 +95,7 @@ class ConfigHandler extends ViewsFormBase {
         foreach ($relationships as $relationship) {
           // relationships can't link back to self. But also, due to ordering,
           // relationships can only link to prior relationships.
-          if ($type == 'relationship' && $id == $relationship['id']) {
+          if ($type === 'relationship' && $id === $relationship['id']) {
             break;
           }
           $relationship_handler = Views::handlerManager('relationship')->getHandler($relationship);
@@ -269,7 +269,7 @@ class ConfigHandler extends ViewsFormBase {
     list($was_defaulted, $is_defaulted) = $view->getOverrideValues($form, $form_state);
     $executable = $view->getExecutable();
     // If the display selection was changed toggle the override value.
-    if ($was_defaulted != $is_defaulted) {
+    if ($was_defaulted !== $is_defaulted) {
       $display = &$executable->displayHandlers->get($display_id);
       $display->optionsOverride($form, $form_state);
     }

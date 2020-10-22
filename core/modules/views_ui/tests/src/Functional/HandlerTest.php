@@ -107,7 +107,7 @@ class HandlerTest extends UITestBase {
         $id = 'area';
         $edit_handler_url = "admin/structure/views/nojs/handler/test_view_empty/default/$type/$id";
       }
-      elseif ($type == 'relationship') {
+      elseif ($type === 'relationship') {
         $this->drupalPostForm($add_handler_url, ['name[views_test_data.uid]' => TRUE], t('Add and configure @handler', ['@handler' => $type_info['ltitle']]));
         $id = 'uid';
         $edit_handler_url = "admin/structure/views/nojs/handler/test_view_empty/default/$type/$id";

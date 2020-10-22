@@ -310,7 +310,7 @@ class ViewEditForm extends ViewFormBase {
           continue;
         }
 
-        if (($display->getPluginId() == 'page') && ($old_path == $destination) && ($old_path != $view->getExecutable()->displayHandlers->get($id)->getOption('path'))) {
+        if (($display->getPluginId() === 'page') && ($old_path === $destination) && ($old_path !== $view->getExecutable()->displayHandlers->get($id)->getOption('path'))) {
           $destination = $view->getExecutable()->displayHandlers->get($id)->getOption('path');
           $query->remove('destination');
         }
@@ -389,11 +389,11 @@ class ViewEditForm extends ViewFormBase {
 
     $is_display_deleted = !empty($display['deleted']);
     // The master display cannot be duplicated.
-    $is_default = $display['id'] == 'default';
+    $is_default = $display['id'] === 'default';
     // @todo: Figure out why getOption doesn't work here.
     $is_enabled = $view->getExecutable()->displayHandlers->get($display['id'])->isEnabled();
 
-    if ($display['id'] != 'default') {
+    if ($display['id'] !== 'default') {
       $build['top']['#theme_wrappers'] = ['container'];
       $build['top']['#attributes']['id'] = 'edit-display-settings-top';
       $build['top']['#attributes']['class'] = ['views-ui-display-tab-actions', 'edit-display-settings-top', 'views-ui-display-tab-bucket', 'clearfix'];
@@ -472,7 +472,7 @@ class ViewEditForm extends ViewFormBase {
         ];
 
         foreach (Views::fetchPluginNames('display', NULL, [$view->get('storage')->get('base_table')]) as $type => $label) {
-          if ($type == $display['display_plugin']) {
+          if ($type === $display['display_plugin']) {
             continue;
           }
 
@@ -741,8 +741,8 @@ class ViewEditForm extends ViewFormBase {
     // Let other modules add additional links here.
     \Drupal::moduleHandler()->alter('views_ui_display_top_links', $element['extra_actions']['#links'], $view, $display_id);
 
-    if (isset($view->type) && $view->type != $this->t('Default')) {
-      if ($view->type == $this->t('Overridden')) {
+    if (isset($view->type) && $view->type !== $this->t('Default')) {
+      if ($view->type === $this->t('Overridden')) {
         $element['extra_actions']['#links']['revert'] = [
           'title' => $this->t('Revert view'),
           'href' => "admin/structure/views/view/{$view->id()}/revert",
@@ -1021,7 +1021,7 @@ class ViewEditForm extends ViewFormBase {
     ];
     if ($count_handlers > 0) {
       // Create the rearrange text variable for the rearrange action.
-      $rearrange_text = $type == 'filter' ? $this->t('And/Or Rearrange <span class="visually-hidden">filter criteria</span>') : $this->t('Rearrange <span class="visually-hidden">@type</span>', ['@type' => $types[$type]['ltitle']]);
+      $rearrange_text = $type === 'filter' ? $this->t('And/Or Rearrange <span class="visually-hidden">filter criteria</span>') : $this->t('Rearrange <span class="visually-hidden">@type</span>', ['@type' => $types[$type]['ltitle']]);
 
       $actions['rearrange'] = [
         'title' => $rearrange_text,
@@ -1060,12 +1060,12 @@ class ViewEditForm extends ViewFormBase {
     // Filters can now be grouped so we do a little bit extra:
     $groups = [];
     $grouping = FALSE;
-    if ($type == 'filter') {
+    if ($type === 'filter') {
       $group_info = $executable->display_handler->getOption('filter_groups');
       // If there is only one group but it is using the "OR" filter, we still
       // treat it as a group for display purposes, since we want to display the
       // "OR" label next to items within the group.
-      if (!empty($group_info['groups']) && (count($group_info['groups']) > 1 || current($group_info['groups']) == 'OR')) {
+      if (!empty($group_info['groups']) && (count($group_info['groups']) > 1 || current($group_info['groups']) === 'OR')) {
         $grouping = TRUE;
         $groups = [0 => []];
       }
@@ -1146,7 +1146,7 @@ class ViewEditForm extends ViewFormBase {
     }
 
     // If using grouping, re-order fields so that they show up properly in the list.
-    if ($type == 'filter' && $grouping) {
+    if ($type === 'filter' && $grouping) {
       $store = $build['fields'];
       $build['fields'] = [];
       foreach ($groups as $gid => $contents) {
@@ -1155,15 +1155,15 @@ class ViewEditForm extends ViewFormBase {
           $build['fields'][] = [
             '#theme' => 'views_ui_display_tab_setting',
             '#class' => ['views-group-text'],
-            '#link' => ($group_info['operator'] == 'OR' ? $this->t('OR') : $this->t('AND')),
+            '#link' => ($group_info['operator'] === 'OR' ? $this->t('OR') : $this->t('AND')),
           ];
         }
         // Display an operator between each pair of filters within the group.
         $keys = array_keys($contents);
         $last = end($keys);
         foreach ($contents as $key => $pid) {
-          if ($key != $last) {
-            $operator = $group_info['groups'][$gid] == 'OR' ? $this->t('OR') : $this->t('AND');
+          if ($key !== $last) {
+            $operator = $group_info['groups'][$gid] === 'OR' ? $this->t('OR') : $this->t('AND');
             $store[$pid]['#link'] = new FormattableMarkup('@link <span>@operator</span>', ['@link' => $store[$pid]['#link'], '@operator' => $operator]);
           }
           $build['fields'][$pid] = $store[$pid];

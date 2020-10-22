@@ -150,7 +150,7 @@ class ViewEditTest extends UITestBase {
       $this->drupalGet('admin/structure/views/view/' . $view_name);
       $this->assertSession()->statusCodeEquals(200);
       $langcode_url = 'admin/structure/views/nojs/display/' . $view_name . '/' . $display . '/rendering_language';
-      if ($view_name == 'test_view') {
+      if ($view_name === 'test_view') {
         $this->assertNoLinkByHref($langcode_url);
         $assert_session->linkNotExistsExact(t('@type language selected for page', ['@type' => t('Content')]));
         $this->assertSession()->linkNotExists(t('Content language of view row'));
@@ -163,7 +163,7 @@ class ViewEditTest extends UITestBase {
 
       $this->drupalGet($langcode_url);
       $this->assertSession()->statusCodeEquals(200);
-      if ($view_name == 'test_view') {
+      if ($view_name === 'test_view') {
         $this->assertText(t('The view is not based on a translatable entity type or the site is not multilingual.'));
       }
       else {

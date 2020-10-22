@@ -123,7 +123,7 @@ class RearrangeFilter extends ViewsFormBase {
 
       // To prevent a notice.
       $form['remove_groups'][$id] = [];
-      if ($id != 1) {
+      if ($id !== 1) {
         $form['remove_groups'][$id] = [
           '#type' => 'submit',
           '#value' => $this->t('Remove group @group', ['@group' => $id]),
@@ -135,7 +135,7 @@ class RearrangeFilter extends ViewsFormBase {
           '#ajax' => ['url' => NULL],
         ];
       }
-      $group_options[$id] = $id == 1 ? $this->t('Default group') : $this->t('Group @group', ['@group' => $id]);
+      $group_options[$id] = $id === 1 ? $this->t('Default group') : $this->t('Group @group', ['@group' => $id]);
       $form['#group_renders'][$id] = [];
     }
 
@@ -158,7 +158,7 @@ class RearrangeFilter extends ViewsFormBase {
       // If not grouping and the handler is set ungroupable, move it back to
       // the default group to prevent weird errors from having it be in its
       // own group:
-      if (!$grouping && $field['group'] == 'ungroupable') {
+      if (!$grouping && $field['group'] === 'ungroupable') {
         $field['group'] = 1;
       }
 
@@ -270,7 +270,7 @@ class RearrangeFilter extends ViewsFormBase {
     // either adding or removing a group, not actually updating the filters.
     $triggering_element = $form_state->getTriggeringElement();
     if (!empty($triggering_element['#group'])) {
-      if ($triggering_element['#group'] == 'add') {
+      if ($triggering_element['#group'] === 'add') {
         // Add a new group
         $groups['groups'][] = 'AND';
       }

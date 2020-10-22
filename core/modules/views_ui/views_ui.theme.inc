@@ -124,7 +124,7 @@ function template_preprocess_views_ui_build_group_filter_form(&$variables) {
     ['data' => $form['default_group']['All']],
     '',
     [
-      'data' => \Drupal::config('views.settings')->get('ui.exposed_filter_any_label') == 'old_any' ? t('&lt;Any&gt;') : t('- Any -'),
+      'data' => \Drupal::config('views.settings')->get('ui.exposed_filter_any_label') === 'old_any' ? t('&lt;Any&gt;') : t('- Any -'),
       'colspan' => 4,
       'class' => ['class' => 'any-default-radios-row'],
     ],
@@ -252,7 +252,7 @@ function template_preprocess_views_ui_rearrange_filter_form(&$variables) {
       // When JavaScript is enabled, the button for removing the group (if it's
       // present) should be hidden, since it will be replaced by a link on the
       // client side.
-      if (!empty($form['remove_groups'][$group_id]['#type']) && $form['remove_groups'][$group_id]['#type'] == 'submit') {
+      if (!empty($form['remove_groups'][$group_id]['#type']) && $form['remove_groups'][$group_id]['#type'] === 'submit') {
         $form['remove_groups'][$group_id]['#attributes']['class'][] = 'js-hide';
       }
       $row[] = [
